@@ -1,0 +1,27 @@
+
+> @immobiliarelabs/fastify-sentry@1.0.0-1 bench:base /home/dnlup/Dev/GitLab.Farm/fastify-sentry
+> npx concurrently -k -s first "node ./benchmarks/base.js" "node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4001"
+
+[1] Running 10s test @ http://localhost:4001
+[1] 10 connections
+[1] 
+[1] ┌─────────┬──────┬──────┬───────┬──────┬────────┬─────────┬──────────┐
+[1] │ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg    │ Stdev   │ Max      │
+[1] ├─────────┼──────┼──────┼───────┼──────┼────────┼─────────┼──────────┤
+[1] │ Latency │ 0 ms │ 0 ms │ 2 ms  │ 3 ms │ 0.2 ms │ 0.59 ms │ 14.89 ms │
+[1] └─────────┴──────┴──────┴───────┴──────┴────────┴─────────┴──────────┘
+[1] ┌───────────┬─────────┬─────────┬────────┬─────────┬──────────┬─────────┬─────────┐
+[1] │ Stat      │ 1%      │ 2.5%    │ 50%    │ 97.5%   │ Avg      │ Stdev   │ Min     │
+[1] ├───────────┼─────────┼─────────┼────────┼─────────┼──────────┼─────────┼─────────┤
+[1] │ Req/Sec   │ 7507    │ 7507    │ 14159  │ 16703   │ 13546.73 │ 2425.61 │ 7507    │
+[1] ├───────────┼─────────┼─────────┼────────┼─────────┼──────────┼─────────┼─────────┤
+[1] │ Bytes/Sec │ 1.75 MB │ 1.75 MB │ 3.3 MB │ 3.89 MB │ 3.16 MB  │ 565 kB  │ 1.75 MB │
+[1] └───────────┴─────────┴─────────┴────────┴─────────┴──────────┴─────────┴─────────┘
+[1] 
+[1] Req/Bytes counts sampled once per second.
+[1] 
+[1] 0 2xx responses, 149013 non 2xx responses
+[1] 149k requests in 11.05s, 34.7 MB read
+[1] node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4001 exited with code 0
+--> Sending SIGTERM to other processes..
+[0] node ./benchmarks/base.js exited with code SIGTERM
