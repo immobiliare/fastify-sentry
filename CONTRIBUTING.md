@@ -15,16 +15,6 @@ $ npm run lint
 
 Angular, enforced with [commitizen](https://github.com/commitizen/cz-cli) and [commitlint](https://github.com/conventional-changelog/commitlint).
 
-### Quality
-
-Contributions should be validated with the command:
-
-```bash
-$ codeclimate analyze
-```
-
-See [codeclimate](https://github.com/codeclimate/codeclimate).
-
 ### Test
 
 Contributions should pass existing tests or have test cases for new functionality.
