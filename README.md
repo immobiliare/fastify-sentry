@@ -118,9 +118,9 @@ fastify.get('/user/:id', async (req, reply) => {
 });
 ```
 
-### Note
+### Benchmarks
 
-Beware of using the Sentry SDK in route handlers outside the default error handler. It is a slow package with a lot of sync code, you will see performance degrading a lot, see [this issue](https://github.com/immobiliare/fastify-metrics/issues/18) and the benchmarks:
+As for everything, using Sentry comes at a cost:
 
 -   [error handler without Sentry](./benchmarks/base.txt)
 -   [error handler with Sentry](./benchmarks/plugin.txt)
