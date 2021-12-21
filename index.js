@@ -12,7 +12,7 @@ const defaultErrorFactory = ({ allowedStatusCodes }) =>
         } else {
             reply.send(error);
         }
-        // TODO (perf): mutate this array to a map for O(1) access
+    
         if (!allowedStatusCodes.includes(reply.statusCode)) {
             this.Sentry.withScope((scope) => {
                 scope.setUser({
@@ -98,7 +98,7 @@ module.exports = fp(
 
         const onError = onErrorFactory({
             environment,
-            allowedStatusCodes, // TODO (perf): mutate this array to a map for O(1) access
+            allowedStatusCodes,
             fastify,
         });
         if (typeof onError !== 'function') {
