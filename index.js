@@ -55,13 +55,9 @@ module.exports = fp(
             dsn,
             environment = 'Local',
             release,
-            // I am not sure our Sentry instance supports this feature
-            // so I am diabling it by default until we know that it's supported.
-            // See https://docs.sentry.io/product/releases/health/
             autoSessionTracking = false,
             defaultIntegrations = false,
             integrations,
-            // TODO: Check if this can be done using the native Sentry options.
             allowedStatusCodes = defaultAllowedStatusCodes,
             onErrorFactory = defaultErrorFactory,
             ...sentryOptions
