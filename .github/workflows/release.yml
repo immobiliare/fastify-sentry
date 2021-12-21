@@ -1,10 +1,16 @@
 name: Release
 
+# on:
+#     push:
+#         branches:
+#             - main
+#             - next
+
+## TODO: Remove
 on:
-    push:
-        branches:
-            - main
-            - next
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
     test:

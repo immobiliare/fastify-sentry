@@ -1,7 +1,14 @@
 name: Benchmarks
+
+# on:
+#     - push
+#     - pull_request
+
+## TODO: Remove
 on:
-    - push
-    - pull_request
+  push:
+    branches-ignore:
+      - '**'
 
 jobs:
     benchmark_current:
