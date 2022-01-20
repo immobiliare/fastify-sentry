@@ -174,7 +174,7 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 
 ## Powered Apps
 
-`fastify-sentry` was created by the amazing Node.js team at ImmobiliareLabs, the Tech dept of [Immobiliare.it](https://www.immobiliare.it), the #1 real estate company in Italy.
+`fastify-sentry` was created by the amazing Node.js team at [ImmobiliareLabs](https://github.com/immobiliare), the Tech dept of [Immobiliare.it](https://www.immobiliare.it), the #1 real estate company in Italy.
 
 We are currently using `fastify-sentry` in our products as well as our internal toolings.
 
