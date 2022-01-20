@@ -6,12 +6,12 @@
 ![npm (scoped)](https://img.shields.io/npm/v/@immobiliarelabs/fastify-sentry)
 ![license](https://img.shields.io/github/license/immobiliare/fastify-sentry)
 
-> Sometimes errors happens, no matter how good our code is, and we may want to catch them and send to [Sentry](https://sentry.io/) for further analysis! This plugin aim to do just that!
+> Sometimes errors happens, no matter how good our code is, we may want to catch and send them to [Sentry](https://sentry.io/) for further analysis! This plugin aim to do just that, as easily as possible!
 
 Plug, add your Sentry's DNS and you're good to go!
 This plugin standardize options and payload format then registers a default errorHandler that uses `Sentry` to report errors, it also decorates the `fastify` instance with the `Sentry` object so you can use it for your custom needs.
 
-## Table of contents
+## Table of contents
 
 <!-- toc -->
 
