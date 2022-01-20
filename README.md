@@ -1,9 +1,10 @@
-# fastify-sentry
+<h1 align="center">fastify-sentry</h1>
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
-[![pipeline status](https://github.com/immobiliare/fastify-metrics/badges/develop/pipeline.svg)](https://github.com/immobiliare/fastify-metrics/commits/develop)
-[![coverage report](https://github.com/immobiliare/fastify-metrics/badges/develop/coverage.svg)](https://github.com/immobiliare/fastify-metrics/commits/develop)
+![release workflow](https://img.shields.io/github/workflow/status/immobiliare/fastify-sentry/Release)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier?style=flat-square)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
+![npm (scoped)](https://img.shields.io/npm/v/@immobiliarelabs/fastify-sentry)
+![license](https://img.shields.io/github/license/immobiliare/fastify-sentry)
 
 > [Fastify](https://www.fastify.io/) plugin that integrates [Sentry](https://sentry.io/) error reporting.
 
@@ -160,6 +161,23 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 
 `Function`
 
-## Contributing
 
-See [the contributing section](./CONTRIBUTING.md).
+## Powered Apps
+
+`fastify-sentry` was created by the amazing Node.js team at ImmobiliareLabs, the Tech dept of [Immobiliare.it](https://www.immobiliare.it), the #1 real estate company in Italy.
+
+We are currently using `fastify-sentry` in our products as well as our internal toolings.
+
+**If you are using fastify-sentry in production [drop us a message](mailto://opensource@immobiliare.it)**.
+
+## Support & Contribute
+
+Made with ❤️ by [ImmobiliareLabs](https://github.com/immobiliare) & [Contributors](./CONTRIBUTING.md#contributors)
+
+We'd love for you to contribute to `fastify-sentry`!
+If you have any questions on how to use `fastify-sentry`, bugs and enhancement please feel free to reach out by opening a [GitHub Issue](https://github.com/immobiliare/fastify-sentry/issues).
+
+## License
+
+`fastify-sentry` is licensed under the MIT license.  
+See the [LICENSE](./LICENSE) file for more information.

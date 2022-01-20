@@ -13,7 +13,7 @@ $ npm run lint
 
 ### Commit Convention
 
-Angular, enforced with [commitizen](https://github.com/commitizen/cz-cli) and [commitlint](https://github.com/conventional-changelog/commitlint).
+Angular.
 
 ### Test
 
@@ -31,3 +31,10 @@ Style and lint errors should be fixed with
 ```bash
 $ npm run lint
 ```
+
+## Contributors
+
+[@JellyBellyDev](https://github.com/JellyBellyDev)  
+[@simonecorsi](https://github.com/simonecorsi)  
+[@dnlup](https://github.com/dnlup)  
+[@antoniomuso](https://github.com/antoniomuso)
