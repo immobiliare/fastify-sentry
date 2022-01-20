@@ -8,9 +8,11 @@
 
 > [Fastify](https://www.fastify.io/) plugin that integrates [Sentry](https://sentry.io/) error reporting.
 
-Supports Fastify versions `>=3.0.0`.
+Sometimes errors happens, no matter how good our code is, and we may want to catch them and send to Sentry for analysis
 
-This plugin registers a default errorHandler that uses `Sentry` to report errors and also decorates the `fastify` instance with the `Sentry` object.
+This plugin aim to do just that! Plug, add your DNS and you're good to go! It standardize options and format payload, registers a default errorHandler that uses `Sentry` to report errors and also decorates the `fastify` instance with the `Sentry` object, and cleanup when the process exit.
+
+## Table of contents
 
 <!-- toc -->
 
@@ -19,13 +21,16 @@ This plugin registers a default errorHandler that uses `Sentry` to report errors
     + [overriding the allowed status codes](#overriding-the-allowed-status-codes)
     + [using a custom error handler](#using-a-custom-error-handler)
     + [using Sentry outside the error handler](#using-sentry-outside-the-error-handler)
-  * [Note](#note)
+  * [Benchmarks](#benchmarks)
 - [API](#api)
   * [Configuration `options`](#configuration-options)
     + [`onErrorFactory(options)`](#onerrorfactoryoptions)
       - [options](#options)
       - [returns](#returns)
-- [Contributing](#contributing)
+- [Compatibility](#compatibility)
+- [Powered Apps](#powered-apps)
+- [Support & Contribute](#support--contribute)
+- [License](#license)
 
 <!-- tocstop -->
 
@@ -161,6 +166,12 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 
 `Function`
 
+## Compatibility
+
+|  | Version        |
+| ---     | ---            |
+| fastify | `>=3.0.0`        |
+| sentry | `^6.13.3`        |
 
 ## Powered Apps
 

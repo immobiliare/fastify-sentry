@@ -1,8 +1,11 @@
 'use strict';
 
+const path = require('path');
 const fp = require('fastify-plugin');
 const Sentry = require('@sentry/node');
 const defaultAllowedStatusCodes = require('./allowedStatusCodes');
+
+const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
 const defaultErrorFactory = ({ allowedStatusCodes }) =>
     function errorHandler(error, request, reply) {
@@ -12,7 +15,7 @@ const defaultErrorFactory = ({ allowedStatusCodes }) =>
         } else {
             reply.send(error);
         }
-    
+
         if (!allowedStatusCodes.includes(reply.statusCode)) {
             this.Sentry.withScope((scope) => {
                 scope.setUser({
@@ -108,7 +111,7 @@ module.exports = fp(
         next();
     },
     {
-        name: require('../package.json').name,
+        name: PACKAGE_NAME,
         fastify: '3.x',
     }
 );
