@@ -1,5 +1,5 @@
 {
-    "name": "@immobiliarelabs/fastify-metrics",
+    "name": "@immobiliare/fastify-sentry",
     "version": "1.0.0-0",
     "description": "Simple fastify plugin to integrates Sentry error reporting into your services",
     "main": "index.js",
