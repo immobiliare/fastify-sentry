@@ -9,11 +9,15 @@
     "keywords": [
         "nodejs",
         "javascript",
-        "npm",
+        "monitoring",
+        "crash-reporting",
         "sentry",
-        "errors",
-        "fastify",
         "error-handling",
+        "fastify",
+        "error-logging",
+        "fastify-plugin",
+        "npm",
+        "errors",
         "plugin"
     ],
     "files": [
