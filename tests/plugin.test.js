@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('ava');
+const tap = require('tap');
 const { spy, fake } = require('sinon');
 const fastify = require('fastify');
 
@@ -19,7 +19,7 @@ async function setup(options) {
     return server;
 }
 
-test.beforeEach(() => {
+tap.beforeEach(() => {
     delete require.cache[require.resolve('../')];
     for (const key in require.cache) {
         if (/node_modules\/@sentry\//.test(key)) {
@@ -28,7 +28,7 @@ test.beforeEach(() => {
     }
 });
 
-test.serial('configuration validation', async (t) => {
+tap.test('configuration validation', async (t) => {
     const list = [
         {
             config: {
@@ -58,31 +58,28 @@ test.serial('configuration validation', async (t) => {
         },
     ];
     for (const item of list) {
-        await t.throwsAsync(
-            async () => {
-                await setup(item.config);
-            },
-            { message: item.message }
-        );
+        await t.rejects(async () => {
+            await setup(item.config);
+        }, new Error(item.message));
     }
 });
 
-test.serial('configuration without options', async (t) => {
+tap.test('configuration without options', async (t) => {
     const server = await setup();
-    t.is('object', typeof server.Sentry);
+    t.equal('object', typeof server.Sentry);
 });
 
-test.serial('configuration without dns', async (t) => {
+tap.test('configuration without dns', async (t) => {
     const server = await setup({ allowedStatusCodes: [] });
-    t.is('object', typeof server.Sentry);
+    t.equal('object', typeof server.Sentry);
 });
 
-test('configuration with dsn', async (t) => {
+tap.test('configuration with dsn', async (t) => {
     const server = await setup({ dsn: DSN });
-    t.is('object', typeof server.Sentry);
+    t.equal('object', typeof server.Sentry);
 });
 
-test.serial('configuration without default integrations', async (t) => {
+tap.test('configuration without default integrations', async (t) => {
     let addedIntegrations;
     const server = await setup({
         dsn: DSN,
@@ -91,11 +88,11 @@ test.serial('configuration without default integrations', async (t) => {
             return integrations;
         },
     });
-    t.is(0, addedIntegrations.length);
-    t.is('object', typeof server.Sentry);
+    t.equal(0, addedIntegrations.length);
+    t.equal('object', typeof server.Sentry);
 });
 
-test.serial('configuration with default integrations', async (t) => {
+tap.test('configuration with default integrations', async (t) => {
     let addedIntegrations;
     const server = await setup({
         dsn: DSN,
@@ -105,52 +102,52 @@ test.serial('configuration with default integrations', async (t) => {
             return integrations;
         },
     });
-    t.is(7, addedIntegrations.length);
-    t.is('object', typeof server.Sentry);
+    t.equal(7, addedIntegrations.length);
+    t.equal('object', typeof server.Sentry);
 });
 
-test.serial('error handler with allowed status code', async (t) => {
+tap.test('error handler with allowed status code', async (t) => {
     const server = await setup({ dsn: DSN });
     const captureException = spy(server.Sentry, 'captureException');
     const response = await server.inject({
         method: 'GET',
         path: '/not-found',
     });
-    t.is(404, response.statusCode);
-    t.is(false, captureException.called);
+    t.equal(404, response.statusCode);
+    t.equal(false, captureException.called);
     server.Sentry.captureException.restore();
 });
 
-test.serial(
+tap.test(
     'error handler with allowed status code and without Sentry configured',
     async (t) => {
         const server = await setup();
-        t.is('object', typeof server.Sentry);
+        t.equal('object', typeof server.Sentry);
         const response = await server.inject({
             method: 'GET',
             path: '/oops',
         });
-        t.is(500, response.statusCode);
+        t.equal(500, response.statusCode);
         const payload = JSON.parse(response.payload);
-        t.is('Something went wrong', payload.message);
+        t.equal('Something went wrong', payload.message);
     }
 );
 
-test.serial('error handler with not allowed status code', async (t) => {
+tap.test('error handler with not allowed status code', async (t) => {
     const server = await setup({ dsn: DSN });
     const captureException = spy(server.Sentry, 'captureException');
     const response = await server.inject({
         method: 'GET',
         path: '/oops',
     });
-    t.is(500, response.statusCode);
-    t.is(true, captureException.called);
+    t.equal(500, response.statusCode);
+    t.equal(true, captureException.called);
     const payload = JSON.parse(response.payload);
-    t.is('Something went wrong', payload.message);
+    t.equal('Something went wrong', payload.message);
     server.Sentry.captureException.restore();
 });
 
-test.serial(
+tap.test(
     'error handler with not allowed status code in production environment',
     async (t) => {
         const server = await setup({ dsn: DSN, environment: 'production' });
@@ -159,37 +156,37 @@ test.serial(
             method: 'GET',
             path: '/oops',
         });
-        t.is(500, response.statusCode);
-        t.is(true, captureException.called);
+        t.equal(500, response.statusCode);
+        t.equal(true, captureException.called);
         const payload = JSON.parse(response.payload);
-        t.is('Something went wrong', payload.message);
+        t.equal('Something went wrong', payload.message);
         server.Sentry.captureException.restore();
     }
 );
 
-test.serial('error handler with custom allowed list', async (t) => {
+tap.test('error handler with custom allowed list', async (t) => {
     const server = await setup({ dsn: DSN, allowedStatusCodes: [500] });
     const captureException = spy(server.Sentry, 'captureException');
     const response = await server.inject({
         method: 'GET',
         path: '/oops',
     });
-    t.is(500, response.statusCode);
-    t.is(false, captureException.called);
+    t.equal(500, response.statusCode);
+    t.equal(false, captureException.called);
     const payload = JSON.parse(response.payload);
-    t.is('Something went wrong', payload.message);
+    t.equal('Something went wrong', payload.message);
     server.Sentry.captureException.restore();
 });
 
-test.serial('should call the custom onErrorFactory', async (t) => {
+tap.test('should call the custom onErrorFactory', async (t) => {
     const onErrorFactory = fake(() => () => {});
     await setup({
         onErrorFactory,
     });
-    t.is(onErrorFactory.called, true);
+    t.equal(onErrorFactory.called, true);
 });
 
-test.serial('should call the custom onError', async (t) => {
+tap.test('should call the custom onError', async (t) => {
     const onError = fake((error, _, reply) => reply.send(error));
     const server = await setup({ dsn: DSN, onErrorFactory: () => onError });
     const captureException = spy(server.Sentry, 'captureException');
@@ -197,15 +194,15 @@ test.serial('should call the custom onError', async (t) => {
         method: 'GET',
         path: '/oops',
     });
-    t.is(onError.called, true);
-    t.is(500, response.statusCode);
-    t.is(false, captureException.called);
+    t.equal(onError.called, true);
+    t.equal(500, response.statusCode);
+    t.equal(false, captureException.called);
     const payload = JSON.parse(response.payload);
-    t.is('Oops', payload.message);
+    t.equal('Oops', payload.message);
     server.Sentry.captureException.restore();
 });
 
-test.serial('Should close sentry when fastify .close', async (t) => {
+tap.test('Should close sentry when fastify .close', async (t) => {
     const server = await setup({ dsn: DSN });
     const close = server.Sentry.close;
     let called = false;
@@ -215,18 +212,21 @@ test.serial('Should close sentry when fastify .close', async (t) => {
     };
     await server.close();
     server.Sentry.close = close;
-    t.is(called, true);
+    t.equal(called, true);
 });
 
-test('fastify .close should not reject if no DSN is configured', async (t) => {
-    const server = await setup();
-    const close = server.Sentry.close;
-    let called = false;
-    server.Sentry.close = (...args) => {
-        called = true;
-        return close(...args);
-    };
-    await server.close();
-    server.Sentry.close = close;
-    t.is(called, true);
-});
+tap.test(
+    'fastify .close should not reject if no DSN is configured',
+    async (t) => {
+        const server = await setup();
+        const close = server.Sentry.close;
+        let called = false;
+        server.Sentry.close = (...args) => {
+            called = true;
+            return close(...args);
+        };
+        await server.close();
+        server.Sentry.close = close;
+        t.equal(called, true);
+    }
+);
