@@ -1,12 +1,6 @@
 name: Run tests
 
-# on: [pull_request]
-
-## TODO: Remove
-on:
-  push:
-    branches-ignore:
-      - '**'
+on: [pull_request]
 
 jobs:
     test:
