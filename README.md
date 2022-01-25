@@ -17,6 +17,7 @@ This plugin standardize options and payload format then registers a default erro
 
 - [Installation](#installation)
 - [Usage](#usage)
+  * [Customization](#customization)
     + [overriding the allowed status codes](#overriding-the-allowed-status-codes)
     + [using a custom error handler](#using-a-custom-error-handler)
     + [using Sentry outside the error handler](#using-sentry-outside-the-error-handler)
@@ -114,9 +115,6 @@ fastify.register(require('@immobiliarelabs/fastify-sentry'), {
 fastify.get('/user/:id', async (req, reply) => {
     const user = await getUserFromStorage(req.params.id);
     if (user.blocked) {
-        // Beware of using Sentry in routes handlers, it is very slow!
-        // It is just shown here just as an example of usage outside fastify
-        // error handler.
         fastify.Sentry.captureMessage('Blocked user tried to get in');
         ...
     } else {
