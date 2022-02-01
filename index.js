@@ -72,8 +72,7 @@ module.exports = fp(
             environment,
             release,
             autoSessionTracking,
-            defaultIntegrations:
-                defaultIntegrations === false ? defaultIntegrations : undefined,
+            defaultIntegrations,
             integrations,
             ...sentryOptions,
         });
