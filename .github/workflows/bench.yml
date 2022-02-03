@@ -17,9 +17,10 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: lts/*
-            - uses: bahmutov/npm-install@v1
-              with:
-                  useLockFile: false
+            - name: Downgrade npm
+              run: npm i -g npm@8.3
+            - name: Install dependencies
+              run: npm i
             - name: Run Benchmark
               run: npm run bench
 
@@ -33,8 +34,9 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: lts/*
-            - uses: bahmutov/npm-install@v1
-              with:
-                  useLockFile: false
+            - name: Downgrade npm
+              run: npm i -g npm@8.3
+            - name: Install dependencies
+              run: npm i
             - name: Run Benchmark
               run: npm run bench

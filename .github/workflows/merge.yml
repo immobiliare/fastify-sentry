@@ -17,7 +17,9 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}
-            - uses: bahmutov/npm-install@v1
-              with:
-                  useLockFile: false
-            - run: npm t
+            - name: Downgrade npm
+              run: npm i -g npm@8.3
+            - name: Install dependencies
+              run: npm i
+            - name: Run tests
+              run: npm t
