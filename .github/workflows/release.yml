@@ -1,10 +1,6 @@
 name: Release
 
-on:
-    push:
-        branches:
-            - main
-            - next
+on: [workflow_dispatch]
 
 jobs:
     test:
