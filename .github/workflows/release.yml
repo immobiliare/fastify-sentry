@@ -45,3 +45,6 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+                  GIT_AUTHOR_NAME: "${{ github.actor }}"
+                  GIT_COMMITTER_NAME: "${{ github.actor }}"
+
