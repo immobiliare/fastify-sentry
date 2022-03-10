@@ -90,11 +90,11 @@ fastify.register(require('@immobiliarelabs/fastify-sentry'), {
     dsn: '<your sentry dsn>',
     environment: 'production',
     release: '1.0.0',
-    onErrorFactory: ({ environment, allowedStatusCodes, fastify }) => {
-        return (error, request, reply) => {
+    onErrorFactory: ({ environment, allowedStatusCodes }) => {
+        return function (error, request, reply) {
             reply.send(error);
             if (environment === 'production' && reply.res.statusCode === 500) {
-                fastify.Sentry.captureException(error);
+                this.Sentry.captureException(error);
             }
         };
     },
@@ -115,7 +115,7 @@ fastify.register(require('@immobiliarelabs/fastify-sentry'), {
 fastify.get('/user/:id', async (req, reply) => {
     const user = await getUserFromStorage(req.params.id);
     if (user.blocked) {
-        fastify.Sentry.captureMessage('Blocked user tried to get in');
+        this.Sentry.captureMessage('Blocked user tried to get in');
         ...
     } else {
         ...
@@ -141,17 +141,13 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 > The plugin extends [the standard Sentry options](https://docs.sentry.io/platforms/node/configuration/options/) with the following properties:
 
 | key  | type  | description | default |
-| --- | --- | ----- | ------ |
-| `environment` | String | Sentry SDK environment. Defaults to `local` (see [environment](https://docs.sentry.io/error-reporting/configuration/?platform=node#environment) | 'local' |               
-| `defaultIntegration` | Boolean | Include the default SDK integrations (see [node#default-integrations](https://docs.sentry.io/error-reporting/configuration/?platform=node#default-integrations) and [default-integrations](https://docs.sentry.io/platforms/node/default-integrations/) |  `false` |
-| `autoSessionTracking` | Boolean | Enable automatic tracking of releases health (see [health](https://docs.sentry.io/product/releases/health/)). |`false` |
+| --- | --- | ----- | ------ |             
 | `allowedStatusCodes` | Number[] | A list of status code that will not cause a report to Sentry. If you pass a list it **not** merged with the default one | `[400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 416, 416, 416, 417, 418, 421, 422, 423, 424, 425, 426, 428, 429, 431, 451]` |
 | `onErrorFactory`     | Function          | Custom `onError` factory function, see [onErrorFactory](#onerrorfactoryoptions). | default factory which generates an handler that reports to Sentry all errors that haven't the status code listed in the `allowedStatusCodes` list                                                                                |
 
-
 #### `onErrorFactory(options)`
 
-> The error handler factory which returns a function that will be passed to [`fastify.setErrorHandler`](https://github.com/fastify/fastify/blob/2.x/docs/Server.md#seterrorhandler).
+> The error handler factory which returns a function that will be passed to [`fastify.setErrorHandler`](https://github.com/fastify/fastify/blob/2.x/docs/Server.md#seterrorhandler) and that will have as `this` context the `fastify` instance.
 
 ##### options
 
@@ -159,7 +155,6 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 
 -   `options.environment`: the environment string passed to the plugin options
 -   `options.allowedStatusCodes`: the `allowedStatusCodes` list passed to the plugin options
--   `options.fastify`: the fastify instance
 
 ##### returns
 

@@ -1,11 +1,12 @@
 'use strict';
 
 const tap = require('tap');
-const { spy, fake } = require('sinon');
 const { defaultIntegrations } = require('@sentry/node');
+const { spy, fake, stub } = require('sinon');
 const fastify = require('fastify');
 
-const DSN = 'https://00000000000000000000000000000000@sentry.io/0000000';
+const DSN =
+    'https://00000000000000000000000000000000@o000000.ingest.sentry.io/0000000';
 
 async function setup(options) {
     const server = fastify();
@@ -89,7 +90,7 @@ tap.test('configuration without default integrations', async (t) => {
             return integrations;
         },
     });
-    t.equal(0, addedIntegrations.length);
+    t.ok(addedIntegrations.length > 0);
     t.equal('object', typeof server.Sentry);
 });
 
@@ -203,31 +204,28 @@ tap.test('should call the custom onError', async (t) => {
     server.Sentry.captureException.restore();
 });
 
-tap.test('Should close sentry when fastify .close', async (t) => {
+tap.test('Should close sentry when fastify closes', async (t) => {
+    // We use a stub here because in a CI environment the sdk fails
+    // with a 400 status code when calling `close()`.
     const server = await setup({ dsn: DSN });
-    const close = server.Sentry.close;
-    let called = false;
-    server.Sentry.close = (...args) => {
-        called = true;
-        return close(...args);
-    };
+    const close = stub(server.Sentry, 'close').resolves();
     await server.close();
-    server.Sentry.close = close;
-    t.equal(called, true);
+    t.ok(close.calledOnce);
+    close.restore();
 });
 
 tap.test(
     'fastify .close should not reject if no DSN is configured',
     async (t) => {
+        // Here we are testing that we don't error
+        // when no dsn is passed because `Sentry.close`
+        // passes an argument when it resolves **only** in this case,
+        // causing the `done()` cb in the hook to pass a value, which is considered
+        // an error by the fastify hook runner.
         const server = await setup();
-        const close = server.Sentry.close;
-        let called = false;
-        server.Sentry.close = (...args) => {
-            called = true;
-            return close(...args);
-        };
+        const close = spy(server.Sentry, 'close');
         await server.close();
-        server.Sentry.close = close;
-        t.equal(called, true);
+        t.ok(close.calledOnce);
+        close.restore();
     }
 );
