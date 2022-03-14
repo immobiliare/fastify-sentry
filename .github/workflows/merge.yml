@@ -13,7 +13,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.GH_OWNER_TOKEN }}
             - uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}
