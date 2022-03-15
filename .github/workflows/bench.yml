@@ -10,8 +10,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
                   ref: ${{ github.base_ref }}
             - name: Setup Node
               uses: actions/setup-node@v2
@@ -29,7 +30,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
             - name: Setup Node
               uses: actions/setup-node@v2
               with:
