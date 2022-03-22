@@ -2,6 +2,7 @@
 
 const tap = require('tap');
 const { spy, fake } = require('sinon');
+const { defaultIntegrations } = require('@sentry/node');
 const fastify = require('fastify');
 
 const DSN = 'https://00000000000000000000000000000000@sentry.io/0000000';
@@ -102,7 +103,7 @@ tap.test('configuration with default integrations', async (t) => {
             return integrations;
         },
     });
-    t.equal(7, addedIntegrations.length);
+    t.equal(defaultIntegrations.length, addedIntegrations.length);
     t.equal('object', typeof server.Sentry);
 });
 
