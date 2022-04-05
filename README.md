@@ -16,6 +16,7 @@ This plugin standardize options and payload format then registers a default erro
 <!-- toc -->
 
 - [Installation](#installation)
+- [Migrating from version 1](#migrating-from-version-1)
 - [Usage](#usage)
   * [Customization](#customization)
     + [overriding the allowed status codes](#overriding-the-allowed-status-codes)
@@ -53,6 +54,10 @@ $ yarn add @immobiliarelabs/fastify-sentry
 # latest development version
 $ yarn @immobiliarelabs/fastify-sentry@next
 ```
+
+## Migrating from version 1
+
+Please check this [migration guide](./MIGRATION_GUIDE.md) if you are migrating from the version 1 of the plugin.
 
 ## Usage
 
