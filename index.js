@@ -55,29 +55,17 @@ module.exports = fp(
     function (
         fastify,
         {
-            dsn,
-            environment = 'Local',
+            environment,
             release,
-            autoSessionTracking = false,
-            defaultIntegrations = false,
-            integrations,
             allowedStatusCodes = defaultAllowedStatusCodes,
             onErrorFactory = defaultErrorFactory,
             ...sentryOptions
         },
         next
     ) {
-        Sentry.init({
-            dsn,
-            environment,
-            release,
-            autoSessionTracking,
-            defaultIntegrations,
-            integrations,
-            ...sentryOptions,
-        });
-
-        if (!dsn) {
+        sentryOptions = sentryOptions || {};
+        Sentry.init(sentryOptions);
+        if (!sentryOptions.dsn) {
             fastify.log.error(
                 'No dsn was provided, skipping Sentry configuration.'
             );
@@ -97,7 +85,6 @@ module.exports = fp(
         const onError = onErrorFactory({
             environment,
             allowedStatusCodes,
-            fastify,
         });
         if (typeof onError !== 'function') {
             return next(new Error('onError handler must be a function'));
