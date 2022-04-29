@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/immobiliare/fastify-sentry/compare/v1.0.1...v2.0.0) (2022-04-29)
+
+
+### Bug Fixes
+
+* remove overriding of sentry options ([827c299](https://github.com/immobiliare/fastify-sentry/commit/827c29941fc0e3811d5bd0c2af63c37db17b879d)), closes [#22](https://github.com/immobiliare/fastify-sentry/issues/22) [#32](https://github.com/immobiliare/fastify-sentry/issues/32)
+
+
+### BREAKING CHANGES
+
+* defaultIntegrations and autoSessionTracking are not set to false anymore by default.
+
 ## [1.0.1](https://github.com/immobiliare/fastify-sentry/compare/v1.0.0...v1.0.1) (2022-02-04)
 
 
