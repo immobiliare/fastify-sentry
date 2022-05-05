@@ -66,9 +66,7 @@ module.exports = fp(
         sentryOptions = sentryOptions || {};
         Sentry.init(sentryOptions);
         if (!sentryOptions.dsn) {
-            fastify.log.error(
-                'No dsn was provided, skipping Sentry configuration.'
-            );
+            fastify.log.error('No Sentry DSN was provided.');
         }
 
         try {
