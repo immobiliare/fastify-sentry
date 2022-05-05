@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/immobiliare/fastify-sentry/compare/v2.0.0...v2.0.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* change log message when no dsn is passed ([38ead32](https://github.com/immobiliare/fastify-sentry/commit/38ead3228c3eac400f4a02b7c9c49a8c1b77e1a6)), closes [#96](https://github.com/immobiliare/fastify-sentry/issues/96)
+
 # [2.0.0](https://github.com/immobiliare/fastify-sentry/compare/v1.0.1...v2.0.0) (2022-04-29)
 
 
