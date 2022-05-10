@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/immobiliare/fastify-sentry/compare/v2.0.1...v3.0.0) (2022-05-10)
+
+
+### Features
+
+* updates node.js ([39551bc](https://github.com/immobiliare/fastify-sentry/commit/39551bc67cc56edd0ce8ab89a280a24b9fc4ffd7))
+
+
+### BREAKING CHANGES
+
+* Node.js 12 is deprecated
+
 ## [2.0.1](https://github.com/immobiliare/fastify-sentry/compare/v2.0.0...v2.0.1) (2022-05-05)
 
 
