@@ -11,6 +11,8 @@
 Plug, add your Sentry's `DSN` and you're good to go!
 This plugin standardize options and payload format then registers a default errorHandler that uses `Sentry` to report errors, it also decorates the `fastify` instance with the `Sentry` object so you can use it for your custom needs.
 
+Supports Node.js `>=14.0.0`, if you are a Node.js `v12` user refer to `fastify-sentry@2.x.x`.
+
 ## Table of contents
 
 <!-- toc -->
