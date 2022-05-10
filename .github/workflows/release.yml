@@ -31,7 +31,7 @@ jobs:
                   node-version: lts/*
             - uses: actions/checkout@v3
               with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.GH_OWNER_TOKEN }}
                   persist-credentials: false
 
             - name: Install dependencies
