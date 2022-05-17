@@ -17,21 +17,20 @@ const defaultErrorFactory = ({ allowedStatusCodes }) =>
         }
 
         if (!allowedStatusCodes.includes(reply.statusCode)) {
-            this.Sentry.withScope((scope) => {
-                scope.setUser({
-                    ip_address: request.ip,
-                });
-                scope.setLevel('error');
-                scope.setTag('path', request.url);
-                scope.setExtra('headers', request.headers);
-                if (
-                    request.headers['content-type'] === 'application/json' &&
-                    request.body
-                ) {
-                    scope.setExtra('body', request.body);
-                }
-                this.Sentry.captureException(error);
+            const scope = this.Sentry.getCurrentHub().getScope();
+            scope.setUser({
+                ip_address: request.ip,
             });
+            scope.setLevel('error');
+            scope.setTag('path', request.url);
+            scope.setExtra('headers', request.headers);
+            if (
+                request.headers['content-type'] === 'application/json' &&
+                request.body
+            ) {
+                scope.setExtra('body', request.body);
+            }
+            this.Sentry.captureException(error);
         }
     };
 
