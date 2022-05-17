@@ -10,7 +10,11 @@ const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 const defaultErrorFactory = ({ allowedStatusCodes }) =>
     function errorHandler(error, request, reply) {
         request.log.error(error);
-        if (reply.statusCode === 500) {
+        // @fastify/sensible explicit internal errors support
+        if (
+            reply.statusCode === 500 &&
+            error.explicitInternalServerError !== true
+        ) {
             reply.send(new Error('Something went wrong'));
         } else {
             reply.send(error);

@@ -49,6 +49,9 @@
         "npm": ">=6"
     },
     "devDependencies": {
+        "@commitlint/cli": "^17.0.0",
+        "@commitlint/config-conventional": "^17.0.0",
+        "@fastify/sensible": "^4.1.0",
         "@saithodev/semantic-release-backmerge": "^2.0.0",
         "@semantic-release/changelog": "^6.0.0",
         "@semantic-release/commit-analyzer": "^9.0.1",
@@ -56,8 +59,6 @@
         "@semantic-release/github": "^8.0.1",
         "@semantic-release/npm": "^9.0.0",
         "@semantic-release/release-notes-generator": "^10.0.2",
-        "@commitlint/cli": "^17.0.0",
-        "@commitlint/config-conventional": "^17.0.0",
         "@types/node": "^17.0.2",
         "autocannon": "^7.4.0",
         "concurrently": "^7.0.0",

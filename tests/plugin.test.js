@@ -4,13 +4,17 @@ const tap = require('tap');
 const { defaultIntegrations } = require('@sentry/node');
 const { spy, fake, stub } = require('sinon');
 const fastify = require('fastify');
+const sensible = require('@fastify/sensible');
+const plugin = require('../');
 
 const DSN =
     'https://00000000000000000000000000000000@o000000.ingest.sentry.io/0000000';
 
-async function setup(options) {
+async function setup(options, pre = async () => {}, post = async () => {}) {
     const server = fastify();
-    server.register(require('../'), options);
+    await pre(server);
+    server.register(plugin, options);
+    await post(server);
     server.get('/oops', async () => {
         throw new Error('Oops');
     });
@@ -227,5 +231,33 @@ tap.test(
         await server.close();
         t.ok(close.calledOnce);
         close.restore();
+    }
+);
+
+tap.test(
+    '@fastify/sensible explicit internal errors support',
+    { only: true },
+    async (t) => {
+        const server = await setup(
+            { dsn: DSN, environment: 'production' },
+            async (s) => {
+                s.register(sensible);
+            },
+            async (s) => {
+                s.get('/sensible', async function () {
+                    throw this.httpErrors.internalServerError('My Error');
+                });
+            }
+        );
+        const captureException = spy(server.Sentry, 'captureException');
+        const response = await server.inject({
+            method: 'GET',
+            path: '/sensible',
+        });
+        t.equal(500, response.statusCode);
+        t.equal(true, captureException.called);
+        const payload = JSON.parse(response.payload);
+        t.equal('My Error', payload.message);
+        server.Sentry.captureException.restore();
     }
 );
