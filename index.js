@@ -4,6 +4,7 @@ const path = require('path');
 const fp = require('fastify-plugin');
 const Sentry = require('@sentry/node');
 const defaultAllowedStatusCodes = require('./allowedStatusCodes');
+const { parseRequest } = require('./lib/utils');
 
 const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
@@ -22,18 +23,9 @@ const defaultErrorFactory = ({ allowedStatusCodes }) =>
 
         if (!allowedStatusCodes.includes(reply.statusCode)) {
             this.Sentry.withScope((scope) => {
-                scope.setUser({
-                    ip_address: request.ip,
-                });
-                scope.setLevel('error');
-                scope.setTag('path', request.url);
-                scope.setExtra('headers', request.headers);
-                if (
-                    request.headers['content-type'] === 'application/json' &&
-                    request.body
-                ) {
-                    scope.setExtra('body', request.body);
-                }
+                scope.addEventProcessor((event) =>
+                    parseRequest(event, request)
+                );
                 this.Sentry.captureException(error);
             });
         }

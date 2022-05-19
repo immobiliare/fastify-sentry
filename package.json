@@ -21,6 +21,7 @@
         "plugin"
     ],
     "files": [
+        "lib",
         "index.js",
         "allowedStatusCodes.js",
         "index.d.ts"
@@ -86,6 +87,7 @@
     },
     "dependencies": {
         "@sentry/node": "^6.13.3",
+        "@sentry/utils": "^6.19.7",
         "fastify-plugin": "^3.0.0"
     }
 }
