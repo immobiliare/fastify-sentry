@@ -23,7 +23,6 @@
     "files": [
         "lib",
         "index.js",
-        "allowedStatusCodes.js",
         "index.d.ts"
     ],
     "scripts": {
