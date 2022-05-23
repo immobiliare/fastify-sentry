@@ -59,8 +59,6 @@ module.exports = fp(
     function (
         fastify,
         {
-            environment,
-            release,
             allowedStatusCodes = defaultAllowedStatusCodes,
             onErrorFactory = defaultErrorFactory,
             ...sentryOptions
@@ -75,8 +73,6 @@ module.exports = fp(
 
         try {
             validateOptions({
-                environment,
-                release,
                 allowedStatusCodes,
                 onErrorFactory,
             });
@@ -85,7 +81,6 @@ module.exports = fp(
         }
 
         const onError = onErrorFactory({
-            environment,
             allowedStatusCodes,
         });
         if (typeof onError !== 'function') {
