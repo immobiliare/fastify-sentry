@@ -4,13 +4,14 @@ const path = require('path');
 const fp = require('fastify-plugin');
 const Sentry = require('@sentry/node');
 const defaultAllowedStatusCodes = require('./allowedStatusCodes');
-const { parseRequest } = require('./lib/utils');
+const { parseRequest, isAutoSessionTrackingEnabled } = require('./lib/utils');
 
 const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
 const defaultErrorFactory = ({ allowedStatusCodes }) =>
     function errorHandler(error, request, reply) {
         request.log.error(error);
+        const instance = this;
         // @fastify/sensible explicit internal errors support
         if (
             reply.statusCode === 500 &&
@@ -22,11 +23,25 @@ const defaultErrorFactory = ({ allowedStatusCodes }) =>
         }
 
         if (!allowedStatusCodes.includes(reply.statusCode)) {
-            this.Sentry.withScope((scope) => {
+            instance.Sentry.withScope((scope) => {
                 scope.addEventProcessor((event) =>
                     parseRequest(event, request)
                 );
-                this.Sentry.captureException(error);
+                const client = instance.Sentry.getCurrentHub().getClient();
+                if (client && isAutoSessionTrackingEnabled(client)) {
+                    const isSessionAggregatesMode =
+                        client._sessionFlusher !== undefined;
+                    if (isSessionAggregatesMode) {
+                        const requestSession = scope.getRequestSession();
+                        if (
+                            requestSession &&
+                            requestSession.status !== undefined
+                        ) {
+                            requestSession.status = 'crashed';
+                        }
+                    }
+                }
+                instance.Sentry.captureException(error);
             });
         }
     };
