@@ -1,3 +1,15 @@
+# [3.1.0](https://github.com/immobiliare/fastify-sentry/compare/v3.0.0...v3.1.0) (2022-05-24)
+
+
+### Bug Fixes
+
+* **index.js:** support all options for for sentry initialization ([eef8b8a](https://github.com/immobiliare/fastify-sentry/commit/eef8b8a7f442c0b524875a258ae41827eeb4f38d))
+
+
+### Features
+
+* add support for @fastify/sensible errors ([27f368b](https://github.com/immobiliare/fastify-sentry/commit/27f368b84ff92f8f7a38db7fdea2ea181c2e68db))
+
 # [3.0.0](https://github.com/immobiliare/fastify-sentry/compare/v2.0.1...v3.0.0) (2022-05-10)
 
 
