@@ -1,12 +1,10 @@
 import plugin from '../index.js';
 import fastify from 'fastify';
-import * as SentryTracing from '@sentry/tracing';
 
 const app = fastify({ logger: true });
 app.register(plugin, {
-  sentryOptions: {
-    environment: 'Fastify Tests',
-  },
+  environment: 'Fastify Tests',
+  tracesSampleRate: 1.0,
 });
 
 app.get('/', async () => {
@@ -15,6 +13,10 @@ app.get('/', async () => {
 
 app.get('/error', async () => {
   throw new Error('Fastify Error');
+});
+
+app.get('/error/new', async () => {
+  throw new Error('Fastify Error New');
 });
 
 app.listen(3000);
