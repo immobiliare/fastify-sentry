@@ -9,6 +9,9 @@ const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
 const defaultErrorFactory = ({ allowedStatusCodes }) =>
     function errorHandler(error, request, reply) {
+        if (!reply.statusCode || reply.statusCode <= 400) {
+            reply.statusCode = 500;
+        }
         request.log.error(error);
         // @fastify/sensible explicit internal errors support
         if (
@@ -95,6 +98,6 @@ module.exports = fp(
     },
     {
         name: PACKAGE_NAME,
-        fastify: '3.x',
+        fastify: '>=3.x',
     }
 );

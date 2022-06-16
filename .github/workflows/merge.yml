@@ -1,23 +1,20 @@
-name: Run tests
+name: Merge Request
 
-on: [pull_request]
+on:
+    workflow_run:
+        workflows: ['Run Tests']
+        types:
+            - completed
+    pull_request:
 
 jobs:
-    test:
-        strategy:
-            matrix:
-                os: [ubuntu-latest, macos-latest, windows-latest]
-                node-version: [14.x, 16.x, 18.x]
-
-        runs-on: ${{ matrix.os }}
+    on-failure:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
         steps:
-            - uses: actions/checkout@v3
-              with:
-                  token: ${{ secrets.GITHUB_TOKEN }}
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: Install dependencies
-              run: npm i
-            - name: Run tests
-              run: npm t
+            - run: echo 'The triggering workflow failed'
+    release:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        steps:
+            - run: echo 'Test passed'

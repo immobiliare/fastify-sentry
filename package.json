@@ -45,7 +45,7 @@
     "author": "",
     "license": "MIT",
     "engines": {
-        "node": ">=12",
+        "node": ">=14",
         "npm": ">=6"
     },
     "devDependencies": {
@@ -67,7 +67,7 @@
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^4.0.0",
-        "fastify": "^3.22.0",
+        "fastify": "^4.0.3",
         "husky": "^8.0.0",
         "is-ci": "^3.0.0",
         "lint-staged": "^13.0.0",
@@ -86,6 +86,6 @@
     },
     "dependencies": {
         "@sentry/node": "^7.0.0",
-        "fastify-plugin": "^3.0.0"
+        "fastify-plugin": "^3.0.1"
     }
 }
