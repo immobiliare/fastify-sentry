@@ -1,20 +1,8 @@
-name: Merge Request
+name: Merge Request Checks
 
-on:
-    workflow_run:
-        workflows: ['Run Tests']
-        types:
-            - completed
-    pull_request:
+on: [pull_request]
 
 jobs:
-    on-failure:
-        runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        steps:
-            - run: echo 'The triggering workflow failed'
-    release:
-        runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        steps:
-            - run: echo 'Test passed'
+    tests:
+        name: Run tests
+        uses: ./.github/workflows/test.yml

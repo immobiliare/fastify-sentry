@@ -1,21 +1,15 @@
 name: Release
 
-on:
-    workflow_run:
-        workflows: ['Run Tests']
-        types:
-            - completed
-    workflow_dispatch:
+on: [workflow_dispatch]
 
 jobs:
-    on-failure:
-        runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        steps:
-            - run: echo 'The triggering workflow failed'
+    tests:
+        name: Run tests
+        uses: ./.github/workflows/test.yml
+
     release:
+        needs: [test]
         runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
             - uses: actions/setup-node@v3
               with:
