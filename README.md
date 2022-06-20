@@ -13,6 +13,8 @@ This plugin standardize options and payload format then registers a default erro
 
 Supports Node.js `>=14.0.0`, if you are a Node.js `v12` user refer to `fastify-sentry@2.x.x`.
 
+It works on both version `3` and `4` of Fastiy with some differences. See [here](#onerrorfactoryoptions).
+
 ## Table of contents
 
 <!-- toc -->
@@ -155,6 +157,8 @@ The exported plugin decorates the `fastify` instance with a `Sentry` object and 
 #### `onErrorFactory(options)`
 
 > The error handler factory which returns a function that will be passed to [`fastify.setErrorHandler`](https://github.com/fastify/fastify/blob/2.x/docs/Server.md#seterrorhandler) and that will have as `this` context the `fastify` instance.
+
+When using Fastify `4`, the error handler will be scoped to the plugin context and won't be global anymore. This is a change made in Fastify itself.
 
 ##### options
 
