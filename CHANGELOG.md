@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/immobiliare/fastify-sentry/compare/v3.1.0...v4.0.0) (2022-06-21)
+
+
+### Features
+
+* **fastify:** v4 ([ae1dac8](https://github.com/immobiliare/fastify-sentry/commit/ae1dac8de03a3d9d24ddec6f4186c91ecb79eed5))
+
+
+### BREAKING CHANGES
+
+* **fastify:** Updated fastify framework to new major version v4
+
 # [3.1.0](https://github.com/immobiliare/fastify-sentry/compare/v3.0.0...v3.1.0) (2022-05-24)
 
 
