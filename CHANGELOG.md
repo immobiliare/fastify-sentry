@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/immobiliare/fastify-sentry/compare/v4.0.0...v4.0.1) (2022-06-22)
+
+
+### Bug Fixes
+
+* **fastify:** pin to version 4.x ([78d3937](https://github.com/immobiliare/fastify-sentry/commit/78d39377615058cc9f9e549ce4e1af60fb67c24e))
+
 # [4.0.0](https://github.com/immobiliare/fastify-sentry/compare/v3.1.0...v4.0.0) (2022-06-21)
 
 
