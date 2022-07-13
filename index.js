@@ -98,6 +98,6 @@ module.exports = fp(
     },
     {
         name: PACKAGE_NAME,
-        fastify: '4.x',
+        fastify: '>=4.x',
     }
 );

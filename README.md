@@ -11,14 +11,13 @@
 Plug, add your Sentry's `DSN` and you're good to go!
 This plugin standardize options and payload format then registers a default errorHandler that uses `Sentry` to report errors, it also decorates the `fastify` instance with the `Sentry` object so you can use it for your custom needs.
 
-Supports Node.js `>=14.0.0`, if you are a Node.js `v12` user refer to `fastify-sentry@2.x.x`.
-
-It works on both version `3` and `4` of Fastiy with some differences. See [here](#onerrorfactoryoptions).
+> ⚠️ Fastify 4 introduced some breaking changes, please refer to [this](#fastify-version-support) version support table to find what works best for you!
 
 ## Table of contents
 
 <!-- toc -->
 
+  * [Fastify Version Support](#fastify-version-support)
 - [Installation](#installation)
 - [Migrating from version 1](#migrating-from-version-1)
 - [Usage](#usage)
@@ -38,6 +37,13 @@ It works on both version `3` and `4` of Fastiy with some differences. See [here]
 - [License](#license)
 
 <!-- tocstop -->
+
+### Fastify Version Support
+
+| `Node.js` | `fastify` | `@immobiliarelabs/fastify-metrics` |
+| --------- | --------- | ---------------------------------- |
+| `<14`     | `3`       | `3`                                |
+| `>14`     | `4`       | `4`                                |
 
 ## Installation
 
