@@ -1,6 +1,6 @@
 {
     "name": "@immobiliarelabs/fastify-sentry",
-    "version": "4.0.1",
+    "version": "4.1.0",
     "description": "Simple fastify plugin to integrates Sentry error reporting into your services",
     "main": "index.js",
     "publishConfig": {
