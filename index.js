@@ -9,8 +9,12 @@ const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
 const defaultErrorFactory = ({ allowedStatusCodes }) =>
     function errorHandler(error, request, reply) {
-        if (!reply.statusCode || reply.statusCode <= 400) {
-            reply.statusCode = 500;
+        if (error.headers !== undefined) {
+            reply.headers(error.headers);
+        }
+        if (!reply.statusCode || reply.statusCode === 200) {
+            const statusCode = error.statusCode || error.status;
+            reply.code(statusCode >= 400 ? statusCode : 500);
         }
         request.log.error(error);
         // @fastify/sensible explicit internal errors support
