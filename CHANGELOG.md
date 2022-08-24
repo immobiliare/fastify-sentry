@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/immobiliare/fastify-sentry/compare/v4.1.0...v4.1.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* don't override validation errors ([73317b1](https://github.com/immobiliare/fastify-sentry/commit/73317b16072b8650f6aa5dac3d0581be7ac6baba))
+
 # [4.1.0](https://github.com/immobiliare/fastify-sentry/compare/v4.0.1...v4.1.0) (2022-07-18)
 
 
