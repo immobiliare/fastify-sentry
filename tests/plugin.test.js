@@ -234,30 +234,61 @@ tap.test(
     }
 );
 
-tap.test(
-    '@fastify/sensible explicit internal errors support',
-    { only: true },
-    async (t) => {
-        const server = await setup(
-            { dsn: DSN, environment: 'production' },
-            async (s) => {
-                s.register(sensible);
-            },
-            async (s) => {
-                s.get('/sensible', async function () {
-                    throw this.httpErrors.internalServerError('My Error');
-                });
-            }
-        );
-        const captureException = spy(server.Sentry, 'captureException');
-        const response = await server.inject({
-            method: 'GET',
-            path: '/sensible',
-        });
-        t.equal(500, response.statusCode);
-        t.equal(true, captureException.called);
-        const payload = JSON.parse(response.payload);
-        t.equal('My Error', payload.message);
-        server.Sentry.captureException.restore();
-    }
-);
+tap.test('@fastify/sensible explicit internal errors support', async (t) => {
+    const server = await setup(
+        { dsn: DSN, environment: 'production' },
+        async (s) => {
+            s.register(sensible);
+        },
+        async (s) => {
+            s.get('/sensible', async function () {
+                throw this.httpErrors.internalServerError('My Error');
+            });
+        }
+    );
+    const captureException = spy(server.Sentry, 'captureException');
+    const response = await server.inject({
+        method: 'GET',
+        path: '/sensible',
+    });
+    t.equal(500, response.statusCode);
+    t.equal(true, captureException.called);
+    const payload = JSON.parse(response.payload);
+    t.equal('My Error', payload.message);
+    server.Sentry.captureException.restore();
+});
+
+tap.test('should not override validation errors (issue #209)', async (t) => {
+    const server = await setup(
+        { dsn: DSN, environment: 'production' },
+        async (s) => {
+            s.get(
+                '/validation',
+                {
+                    schema: {
+                        querystring: {
+                            type: 'object',
+                            properties: {
+                                foo: { type: 'string' },
+                            },
+                            required: ['foo'],
+                        },
+                    },
+                },
+                async function () {
+                    return { foo: true };
+                }
+            );
+        }
+    );
+    const captureException = spy(server.Sentry, 'captureException');
+    const response = await server.inject({
+        method: 'GET',
+        path: '/validation',
+    });
+    t.equal(400, response.statusCode);
+    t.equal(false, captureException.called);
+    const payload = JSON.parse(response.payload);
+    t.equal("querystring must have required property 'foo'", payload.message);
+    server.Sentry.captureException.restore();
+});
