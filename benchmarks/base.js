@@ -5,7 +5,11 @@ const Fastify = require('fastify');
 const fastify = Fastify();
 
 fastify.get('/', async () => {
-    throw new Error('test');
+  return { ok: true };
 });
 
-fastify.listen(4001);
+fastify.get('/error', async () => {
+  throw new Error('test');
+});
+
+fastify.listen({ port: 4001 });
