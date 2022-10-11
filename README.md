@@ -19,18 +19,23 @@ This plugin standardize options and payload format then registers a default erro
 
   * [Fastify Version Support](#fastify-version-support)
 - [Installation](#installation)
-- [Migrating from version 1](#migrating-from-version-1)
+- [Migrating from version 4](#migrating-from-version-4)
 - [Usage](#usage)
-  * [Customization](#customization)
-    + [overriding the allowed status codes](#overriding-the-allowed-status-codes)
-    + [using a custom error handler](#using-a-custom-error-handler)
-    + [using Sentry outside the error handler](#using-sentry-outside-the-error-handler)
+  * [using Sentry in a route handler](#using-sentry-in-a-route-handler)
   * [Benchmarks](#benchmarks)
 - [API](#api)
   * [Configuration `options`](#configuration-options)
-    + [`onErrorFactory(options)`](#onerrorfactoryoptions)
-      - [options](#options)
-      - [returns](#returns)
+    + [setErrorHandler](#seterrorhandler)
+    + [shouldHandleError](#shouldhandleerror)
+    + [errorResponse](#errorresponse)
+    + [getTransactionName](#gettransactionname)
+    + [extractRequestData](#extractrequestdata)
+    + [extractUserData](#extractuserdata)
+  * [utils](#utils)
+    + [getTransactionName](#gettransactionname-1)
+    + [extractRequestData](#extractrequestdata-1)
+    + [extractUserData](#extractuserdata-1)
+    + [tryToExtractBody](#trytoextractbody)
 - [Compatibility](#compatibility)
 - [Powered Apps](#powered-apps)
 - [Support & Contribute](#support--contribute)
@@ -65,9 +70,9 @@ $ yarn add @immobiliarelabs/fastify-sentry
 $ yarn @immobiliarelabs/fastify-sentry@next
 ```
 
-## Migrating from version 1
+## Migrating from version 4
 
-Please check this [migration guide](./MIGRATION_GUIDE.md) if you are migrating from the version 1 of the plugin.
+Please check this [migration guide](./MIGRATION_GUIDE.md) if you are migrating from the version 4 of the plugin.
 
 ## Usage
 
@@ -81,42 +86,7 @@ fastify.register(require('@immobiliarelabs/fastify-sentry'), {
 });
 ```
 
-### Customization
-
-#### overriding the allowed status codes
-
-```js
-const fastify = require('fastify')();
-
-fastify.register(require('@immobiliarelabs/fastify-sentry'), {
-    dsn: '<your sentry dsn>',
-    environment: 'production',
-    release: '1.0.0',
-    allowedStatusCodes: [404],
-});
-```
-
-#### using a custom error handler
-
-```js
-const fastify = require('fastify')();
-
-fastify.register(require('@immobiliarelabs/fastify-sentry'), {
-    dsn: '<your sentry dsn>',
-    environment: 'production',
-    release: '1.0.0',
-    onErrorFactory: ({ environment, allowedStatusCodes }) => {
-        return function (error, request, reply) {
-            reply.send(error);
-            if (environment === 'production' && reply.res.statusCode === 500) {
-                this.Sentry.captureException(error);
-            }
-        };
-    },
-});
-```
-
-#### using Sentry outside the error handler
+### using Sentry in a route handler
 
 ```js
 const fastify = require('fastify')();
@@ -127,7 +97,7 @@ fastify.register(require('@immobiliarelabs/fastify-sentry'), {
     release: '1.0.0',
 });
 
-fastify.get('/user/:id', async (req, reply) => {
+fastify.get('/user/:id', async function (req, reply) {
     const user = await getUserFromStorage(req.params.id);
     if (user.blocked) {
         this.Sentry.captureMessage('Blocked user tried to get in');
@@ -138,51 +108,173 @@ fastify.get('/user/:id', async (req, reply) => {
 });
 ```
 
+You can find more examples of usage in the [examples](./examples/) folder :wink:.
+
 ### Benchmarks
 
-As for everything, using Sentry comes at a cost:
-
-- [error handler without Sentry](./benchmarks/base.txt)
-- [error handler with Sentry](./benchmarks/plugin.txt)
+As for everything, using Sentry comes at a cost. You can see the benchmarks [here](./benchmarks/)
 
 ## API
 
 This module exports a [plugin registration function](https://github.com/fastify/fastify/blob/2.x/docs/Plugins-Guide.md#register).
 
-The exported plugin decorates the `fastify` instance with a `Sentry` object and adds a custom `errorHandler` that reports to Sentry all the errors with a status code that is not in the `allowedStatusCodes` list.
+The exported plugin adds the following decorators:
+
+* `fastify.Sentry`: a reference to the `Sentry` instance
+* `reply.sentryEventId` `<string>`: the id of a captured exception, accessible when defining a custom `errorResponse` handler in the plugin options
+* `reply.sentryTransaction`: the current request transaction, accessible when enabling tracing in `Sentry`
+
+and adds a custom error handler that reports to Sentry all the errors that have a `5xx` status code.
 
 ### Configuration `options`
 
-> The plugin extends [the standard Sentry options](https://docs.sentry.io/platforms/node/configuration/options/) with the following properties:
+> The plugin extends [the standard Sentry options object](https://docs.sentry.io/platforms/node/configuration/options/) with the following properties:
 
-| key  | type  | description | default |
-| --- | --- | ----- | ------ |             
-| `allowedStatusCodes` | Number[] | A list of status code that will not cause a report to Sentry. If you pass a list it **not** merged with the default one | `[400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 416, 416, 416, 417, 418, 421, 422, 423, 424, 425, 426, 428, 429, 431, 451]` |
-| `onErrorFactory`     | Function          | Custom `onError` factory function, see [onErrorFactory](#onerrorfactoryoptions). | default factory which generates an handler that reports to Sentry all errors that haven't the status code listed in the `allowedStatusCodes` list                                                                                |
 
-#### `onErrorFactory(options)`
+#### setErrorHandler
 
-> The error handler factory which returns a function that will be passed to [`fastify.setErrorHandler`](https://github.com/fastify/fastify/blob/2.x/docs/Server.md#seterrorhandler) and that will have as `this` context the `fastify` instance.
+> Attach the default error handler to the `fastify` instance.
 
-When using Fastify `4`, the error handler will be scoped to the plugin context and won't be global anymore. This is a change made in Fastify itself.
+**type**: `boolean`
 
-##### options
+**default**: `true`
 
-`Object`
+#### shouldHandleError
 
--   `options.environment`: the environment string passed to the plugin options
--   `options.allowedStatusCodes`: the `allowedStatusCodes` list passed to the plugin options
+> Decide if the error should be sent to `Sentry`
 
-##### returns
+This function is called in the default error handler that the plugin adds.
 
-`Function`
+**type**: `function`
+
+**parameters**:
+
+* `error` `<FastifyError>`
+* `request` `<FastifyRequest>`
+* `reply` `<FastifyReply>`
+
+**returns**:
+
+`boolean`: `true` if the error should be sent, `false` otherwise.
+
+**default**: a function that returns `true` if the status code of the error is `5xx`
+
+#### errorResponse
+
+> Custom handler to respond the client.
+
+This function is called in the dafult error handler right after the exception is captured, so the `reply` is decorated with event id assigned by the `Sentry` SDK.
+
+**type**: `function`
+
+**parameters**:
+
+* `error` `<FastifyError>`
+* `request` `<FastifyRequest>`
+* `reply` `<FastifyReply>`
+
+**returns**: `void`
+
+#### getTransactionName
+
+> Get the request transaction name.
+
+**type**: `function`
+
+**parameters**:
+
+* `request` `<FastifyRequest>`
+
+**returns**: `string`
+
+#### extractRequestData
+
+> Extract request metadata to attach the `Sentry` event.
+
+**type**: `function`
+
+**parameters**:
+
+* `request` `<FastifyRequest>`
+* `keys` `<string[]>` the fields to extract from the request (`headers`, `method`, `protocol`, `url`, `cookies`, `query_string`, `data`)
+
+**returns**: `object` containing the extracted metadata. It can contain one or more properties named after the `keys` passed as parameter as well as other properties.
+
+**default**: a function that returns an object like this:
+
+```js
+{
+    headers: {},
+    method: 'method,
+    protocol: 'https,
+    cookies: {},
+    query_string: {},
+    data: 'request body as string'
+}
+```
+
+#### extractUserData
+
+> Extract user metadata to attach the `Sentry` event.
+
+**type**: `function`
+
+**parameters**:
+
+* `request` `<FastifyRequest>`
+
+**returns**: `object` containing the extracted metadata.
+
+**default**: a function that looks for a user object in the `request` and returns an object like this:
+
+```js
+{
+    id: '',
+    username: '',
+    email: '',
+}
+```
+
+### utils
+
+The package has a `/utils` export that you can import
+
+with `CommonJS`
+
+```js
+const utils = require('@immobiliarelabs/fastify-sentry/utils')
+```
+
+or `ESM`
+
+```js
+import utils from '@immobiliarelabs/fastify-sentry/utils'
+```
+
+and has a set of utilities used internally that can be useful when implementing your custom functions to pass to the plugin initialization.
+
+#### getTransactionName
+
+> This is the default function used to build the transaction name.
+
+#### extractRequestData
+
+> This is the default function used to extract the request metadata.
+
+#### extractUserData
+
+> The default function used to extract the user metadata.
+
+#### tryToExtractBody
+
+> The default function used to extract the body from the request.
 
 ## Compatibility
 
 |  | Version        |
 | ---     | ---            |
-| fastify | `>=3.0.0`        |
-| sentry | `^6.13.3`        |
+| fastify | `>=4.0.0`        |
+| sentry | `^7.0.0`        |
 
 ## Powered Apps
 

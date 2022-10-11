@@ -1,91 +1,111 @@
 {
-    "name": "@immobiliarelabs/fastify-sentry",
-    "version": "4.1.2",
-    "description": "Simple fastify plugin to integrates Sentry error reporting into your services",
-    "main": "index.js",
-    "publishConfig": {
-        "access": "public"
-    },
-    "keywords": [
-        "nodejs",
-        "javascript",
-        "monitoring",
-        "crash-reporting",
-        "sentry",
-        "error-handling",
-        "fastify",
-        "error-logging",
-        "fastify-plugin",
-        "npm",
-        "errors",
-        "plugin"
-    ],
-    "files": [
-        "index.js",
-        "allowedStatusCodes.js",
-        "index.d.ts"
-    ],
-    "scripts": {
-        "lint": "eslint --fix --ignore-path .gitignore .",
-        "test": "tsd && tap --lines 95 --branches 80 --functions 95 --statements 95",
-        "bench": "npm run bench:base && npm run bench:plugin",
-        "bench:base": "npx concurrently -k -s first \"node ./benchmarks/base.js\" \"node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4001\"",
-        "bench:plugin": "npx concurrently -k -s first \"node ./benchmarks/sentry-mock.js\" \"node ./benchmarks/with-sentry.js\" \"node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4002\"",
-        "toc": "markdown-toc -i README.md",
-        "prepare": "node prepare.js || echo 'Skipping prepare script'"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/immobiliare/fastify-sentry.git"
-    },
-    "homepage": "https://github.com/immobiliare/fastify-sentry",
-    "bugs": {
-        "url": "https://github.com/immobiliare/fastify-sentry/issues"
-    },
-    "author": "",
-    "license": "MIT",
-    "engines": {
-        "node": ">=14",
-        "npm": ">=6"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^17.0.0",
-        "@commitlint/config-conventional": "^17.0.0",
-        "@fastify/sensible": "^5.1.0",
-        "@saithodev/semantic-release-backmerge": "^2.0.0",
-        "@semantic-release/changelog": "^6.0.0",
-        "@semantic-release/commit-analyzer": "^9.0.1",
-        "@semantic-release/git": "^10.0.0",
-        "@semantic-release/github": "^8.0.1",
-        "@semantic-release/npm": "^9.0.0",
-        "@semantic-release/release-notes-generator": "^10.0.2",
-        "@types/node": "^18.0.0",
-        "autocannon": "^7.4.0",
-        "concurrently": "^7.0.0",
-        "cz-conventional-changelog": "^3.2.0",
-        "eslint": "^8.0.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "fastify": "^4.0.3",
-        "husky": "^8.0.0",
-        "is-ci": "^3.0.0",
-        "lint-staged": "^13.0.0",
-        "markdown-toc": "^1.2.0",
-        "nyc": "^15.0.1",
-        "prettier": "^2.4.1",
-        "sinon": "^14.0.0",
-        "tap": "^16.0.1",
-        "tsd": "^0.24.1",
-        "typescript": "^4.4.3"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "dependencies": {
-        "@sentry/node": "^7.17.1",
-        "fastify-plugin": "^4.3.0"
+  "name": "@immobiliarelabs/fastify-sentry",
+  "version": "4.1.2",
+  "description": "Simple fastify plugin to integrates Sentry error reporting into your services",
+  "main": "index.js",
+  "type": "commonjs",
+  "exports": {
+    ".": "./index.js",
+    "./utils": "./lib/utils.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "monitoring",
+    "crash-reporting",
+    "sentry",
+    "error-handling",
+    "fastify",
+    "error-logging",
+    "fastify-plugin",
+    "npm",
+    "errors",
+    "plugin"
+  ],
+  "files": [
+    "lib",
+    "index.js",
+    "index.d.ts",
+    "types"
+  ],
+  "scripts": {
+    "lint": "eslint --fix --ignore-path .gitignore .",
+    "test": "tsd && tap",
+    "bench": "npm run bench:base && npm run bench:plugin",
+    "bench:base": "npx concurrently -k -s first \"node ./benchmarks/base.js\" \"node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4001 && npx autocannon localhost:4001/error\"",
+    "bench:plugin": "npx concurrently -k -s first \"node ./benchmarks/sentry-mock.js\" \"node ./benchmarks/with-sentry.js\" \"node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4002 && npx autocannon localhost:4002/error\"",
+    "toc": "markdown-toc -i README.md",
+    "prepare": "node prepare.js || echo 'Skipping prepare script'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/immobiliare/fastify-sentry.git"
+  },
+  "homepage": "https://github.com/immobiliare/fastify-sentry",
+  "bugs": {
+    "url": "https://github.com/immobiliare/fastify-sentry/issues"
+  },
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@fastify/sensible": "^5.1.0",
+    "@saithodev/semantic-release-backmerge": "^2.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/commit-analyzer": "^9.0.1",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^8.0.1",
+    "@semantic-release/npm": "^9.0.0",
+    "@semantic-release/release-notes-generator": "^10.0.2",
+    "@types/node": "^18.0.0",
+    "autocannon": "^7.4.0",
+    "concurrently": "^7.0.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fastify": "^4.0.3",
+    "husky": "^8.0.0",
+    "is-ci": "^3.0.0",
+    "lint-staged": "^13.0.0",
+    "markdown-toc": "^1.2.0",
+    "nyc": "^15.0.1",
+    "prettier": "^2.4.1",
+    "sentry-testkit": "^4.0.3",
+    "sinon": "^14.0.0",
+    "tap": "^16.0.1",
+    "tsd": "^0.24.1",
+    "typescript": "^4.4.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@sentry/node": "^7.17.1",
+    "@sentry/tracing": "^7.17.1",
+    "@sentry/utils": "^7.17.1",
+    "cookie": "^0.5.0",
+    "fastify-plugin": "^4.3.0"
+  },
+  "typesVersions": {
+    "*": {
+      "utils": [
+        "types/utils.d.ts"
+      ]
+    }
+  },
+  "tsd": {
+    "directory": "test/types"
+  }
 }
