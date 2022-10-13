@@ -1,29 +1,46 @@
-
-> @immobiliarelabs/fastify-sentry@1.0.0-1 bench:plugin /home/dnlup/Dev/GitLab.Farm/fastify-sentry
-> npx concurrently -k -s first "node ./benchmarks/sentry-mock.js" "node ./benchmarks/with-sentry.js" "node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4002"
+> @immobiliarelabs/fastify-sentry@4.1.1 bench:plugin
+> npx concurrently -k -s first "node ./benchmarks/sentry-mock.js" "node ./benchmarks/with-sentry.js" "node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4002 && npx autocannon localhost:4002/error"
 
 [2] Running 10s test @ http://localhost:4002
 [2] 10 connections
 [2] 
-[2] ┌─────────┬──────┬──────┬───────┬───────┬─────────┬─────────┬──────────┐
-[2] │ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%   │ Avg     │ Stdev   │ Max      │
-[2] ├─────────┼──────┼──────┼───────┼───────┼─────────┼─────────┼──────────┤
-[2] │ Latency │ 4 ms │ 7 ms │ 16 ms │ 20 ms │ 7.76 ms │ 3.49 ms │ 44.46 ms │
-[2] └─────────┴──────┴──────┴───────┴───────┴─────────┴─────────┴──────────┘
+[2] 
+[2] ┌─────────┬──────┬──────┬───────┬──────┬─────────┬─────────┬───────┐
+[2] │ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg     │ Stdev   │ Max   │
+[2] ├─────────┼──────┼──────┼───────┼──────┼─────────┼─────────┼───────┤
+[2] │ Latency │ 0 ms │ 0 ms │ 1 ms  │ 2 ms │ 0.07 ms │ 0.42 ms │ 18 ms │
+[2] └─────────┴──────┴──────┴───────┴──────┴─────────┴─────────┴───────┘
+[2] ┌───────────┬────────┬────────┬─────────┬─────────┬──────────┬─────────┬────────┐
+[2] │ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg      │ Stdev   │ Min    │
+[2] ├───────────┼────────┼────────┼─────────┼─────────┼──────────┼─────────┼────────┤
+[2] │ Req/Sec   │ 8815   │ 8815   │ 14479   │ 14855   │ 14010.55 │ 1655.09 │ 8810   │
+[2] ├───────────┼────────┼────────┼─────────┼─────────┼──────────┼─────────┼────────┤
+[2] │ Bytes/Sec │ 1.6 MB │ 1.6 MB │ 2.64 MB │ 2.71 MB │ 2.55 MB  │ 302 kB  │ 1.6 MB │
+[2] └───────────┴────────┴────────┴─────────┴─────────┴──────────┴─────────┴────────┘
+[2] 
+[2] Req/Bytes counts sampled once per second.
+[2] # of samples: 11
+[2] 
+[2] 154k requests in 11.02s, 28 MB read
+[2] Running 10s test @ http://localhost:4002/error
+[2] 10 connections
+[2] 
+[2] 
+[2] ┌─────────┬──────┬───────┬───────┬───────┬──────────┬─────────┬───────┐
+[2] │ Stat    │ 2.5% │ 50%   │ 97.5% │ 99%   │ Avg      │ Stdev   │ Max   │
+[2] ├─────────┼──────┼───────┼───────┼───────┼──────────┼─────────┼───────┤
+[2] │ Latency │ 9 ms │ 13 ms │ 22 ms │ 26 ms │ 13.47 ms │ 4.35 ms │ 97 ms │
+[2] └─────────┴──────┴───────┴───────┴───────┴──────────┴─────────┴───────┘
 [2] ┌───────────┬────────┬────────┬────────┬────────┬────────┬─────────┬────────┐
 [2] │ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev   │ Min    │
 [2] ├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
-[2] │ Req/Sec   │ 814    │ 814    │ 1204   │ 1430   │ 1210.2 │ 206.24  │ 814    │
+[2] │ Req/Sec   │ 574    │ 574    │ 738    │ 798    │ 715.4  │ 71.3    │ 574    │
 [2] ├───────────┼────────┼────────┼────────┼────────┼────────┼─────────┼────────┤
-[2] │ Bytes/Sec │ 190 kB │ 190 kB │ 281 kB │ 333 kB │ 282 kB │ 48.1 kB │ 190 kB │
+[2] │ Bytes/Sec │ 157 kB │ 157 kB │ 202 kB │ 218 kB │ 195 kB │ 19.4 kB │ 157 kB │
 [2] └───────────┴────────┴────────┴────────┴────────┴────────┴─────────┴────────┘
 [2] 
 [2] Req/Bytes counts sampled once per second.
+[2] # of samples: 10
 [2] 
-[2] 0 2xx responses, 12102 non 2xx responses
-[2] 12k requests in 10.04s, 2.82 MB read
-[2] node -e 'setTimeout(() => {}, 1000)' && npx autocannon localhost:4002 exited with code 0
---> Sending SIGTERM to other processes..
-[0] node ./benchmarks/sentry-mock.js exited with code SIGTERM
---> Sending SIGTERM to other processes..
-[1] node ./benchmarks/with-sentry.js exited with code SIGTERM
+[2] 0 2xx responses, 7154 non 2xx responses
+[2] 7k requests in 10.02s, 1.95 MB read

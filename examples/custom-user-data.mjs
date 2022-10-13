@@ -1,0 +1,24 @@
+import plugin from '../index.js';
+import fastify from 'fastify';
+
+const app = fastify({ logger: true });
+app.register(plugin, {
+  environment: 'Fastify Tests',
+  extractUserData(request) {
+    const data = {};
+    if (request.user) {
+      data.role = request.user.role;
+    }
+    return data;
+  },
+});
+
+app.get('/', async () => {
+  return { hello: true };
+});
+
+app.get('/error', async () => {
+  throw new Error('Fastify Error');
+});
+
+app.listen({ port: 3000 });

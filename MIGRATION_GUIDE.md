@@ -1,30 +1,80 @@
-# Migrating from v1 to v2
+# Migrating from v4 to v5
 
-## Config options
+<!-- toc -->
 
-We  don't override any of the Sentry SDK options during the plugin initialization.
+- [Filtering events](#filtering-events)
+  * [v4](#v4)
+  * [v5](#v5)
+- [Custom error handler](#custom-error-handler)
+  * [v4](#v4-1)
+  * [v5](#v5-1)
 
-### V1
+<!-- tocstop -->
+
+## Filtering events
+
+### v4
 
 ```js
-const fastify = require('fastify')();
+const fastify = require('fastify');
+const sentry = require('@immobiliarelabs/fastify-sentry');
 
-fastify.register(require('@immobiliarelabs/fastify-sentry'), {
-    dsn: ...,
+const app = fastify();
+
+app.register(sentry, {
+    allowedStatusCodes: [404]
 });
 ```
 
-### V2
-
-> The equivalent of the default config in version 1 would be
+### v5
 
 ```js
-const fastify = require('fastify')();
+const sentry = require('@immobiliarelabs/fastify-sentry');
 
-fastify.register(require('@immobiliarelabs/fastify-sentry'), {
-    dsn: ...,
-    environment: 'Local',
-    defaultIntegrations: false,
-    autoSessionTracking: false,
+const app = fastify();
+
+app.register(sentry, {
+    shouldHandleError(error, request, reply) {
+        if (error.statusCode === 404) {
+            return false
+        }
+        return true
+    }
 });
 ```
+
+## Custom error handler
+
+### v4
+
+```js
+const fastify = require('fastify');
+const sentry = require('@immobiliarelabs/fastify-sentry');
+
+const app = fastify();
+
+app.register(sentry, {
+    onErrorFactory({ allowedStatusCodes }) {
+        ...
+    }
+});
+```
+
+### v5
+
+```js
+const fastify = require('fastify');
+const sentry = require('@immobiliarelabs/fastify-sentry');
+
+const app = fastify();
+
+app.register(sentry, {
+    setErrorHandler: false
+});
+
+app.setErrorHandler(function (error, request, reply) {
+    ...
+})
+```
+
+
