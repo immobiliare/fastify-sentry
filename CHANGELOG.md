@@ -5,6 +5,18 @@
 
 * **deps:** sentry broken version chain ([31a372d](https://github.com/immobiliare/fastify-sentry/commit/31a372d4f6c6b8584e16536737e977e25df8f741)), closes [#274](https://github.com/immobiliare/fastify-sentry/issues/274)
 
+# [5.0.0-next.1](https://github.com/immobiliare/fastify-sentry/compare/v4.1.1...v5.0.0-next.1) (2022-10-13)
+
+
+### Features
+
+* improve integration with sentry sdk ([c20e45b](https://github.com/immobiliare/fastify-sentry/commit/c20e45b4231645a0a8cbde3569da7051ccaa6ce2))
+
+
+### BREAKING CHANGES
+
+* the plugin configuration interface is completely different.
+
 ## [4.1.1](https://github.com/immobiliare/fastify-sentry/compare/v4.1.0...v4.1.1) (2022-08-24)
 
 
