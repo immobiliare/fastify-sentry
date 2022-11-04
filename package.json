@@ -86,6 +86,6 @@
     },
     "dependencies": {
         "@sentry/node": "^7.17.1",
-        "fastify-plugin": "^4.0.0"
+        "fastify-plugin": "^4.3.0"
     }
 }
