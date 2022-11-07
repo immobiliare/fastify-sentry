@@ -10,6 +10,13 @@
 
 * the plugin configuration interface is completely different.
 
+## [4.1.2](https://github.com/immobiliare/fastify-sentry/compare/v4.1.1...v4.1.2) (2022-10-28)
+
+
+### Bug Fixes
+
+* **deps:** sentry broken version chain ([31a372d](https://github.com/immobiliare/fastify-sentry/commit/31a372d4f6c6b8584e16536737e977e25df8f741)), closes [#274](https://github.com/immobiliare/fastify-sentry/issues/274)
+
 ## [4.1.1](https://github.com/immobiliare/fastify-sentry/compare/v4.1.0...v4.1.1) (2022-08-24)
 
 
