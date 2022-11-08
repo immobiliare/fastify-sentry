@@ -1,3 +1,20 @@
+# [5.0.0](https://github.com/immobiliare/fastify-sentry/compare/v4.1.2...v5.0.0) (2022-11-08)
+
+
+### Bug Fixes
+
+* upgrade fastify-plugin from 4.2.1 to 4.3.0 ([0b35f18](https://github.com/immobiliare/fastify-sentry/commit/0b35f181ad031f0b47cd8e57e39261637d0f06f7))
+
+
+### Features
+
+* improve integration with sentry sdk ([c20e45b](https://github.com/immobiliare/fastify-sentry/commit/c20e45b4231645a0a8cbde3569da7051ccaa6ce2))
+
+
+### BREAKING CHANGES
+
+* the plugin configuration interface is completely different.
+
 # [5.0.0-next.1](https://github.com/immobiliare/fastify-sentry/compare/v4.1.1...v5.0.0-next.1) (2022-10-13)
 
 
