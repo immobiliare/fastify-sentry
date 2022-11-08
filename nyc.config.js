@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    exclude: ['*tests*'],
+  exclude: ['*tests*'],
 };
