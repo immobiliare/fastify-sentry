@@ -45,10 +45,10 @@ This plugin standardize options and payload format then registers a default erro
 
 ### Fastify Version Support
 
-| `Node.js` | `fastify` | `@immobiliarelabs/fastify-metrics` |
+| `Node.js` | `fastify` | `@immobiliarelabs/fastify-sentry` |
 | --------- | --------- | ---------------------------------- |
 | `<14`     | `3`       | `3`                                |
-| `>14`     | `4`       | `4`                                |
+| `>14`     | `4`       | `4` and `5`                              |
 
 ## Installation
 
