@@ -1,7 +1,7 @@
 'use strict';
 
 const fastify = require('fastify');
-const sentryTestkit = require('sentry-testkit');
+const sentryTestkit = require('sentry-testkit').default;
 const { testkit, sentryTransport } = sentryTestkit();
 const plugin = require('../');
 
