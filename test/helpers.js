@@ -5,12 +5,21 @@ const sentryTestkit = require('sentry-testkit').default;
 const { testkit, sentryTransport } = sentryTestkit();
 const plugin = require('../');
 
+const logLevel = process.env.TEST_SERVER_LOG_LEVEL;
+
 exports.setup = async function (
   options,
   pre = async () => {},
   post = async () => {}
 ) {
-  const server = fastify();
+  const serverOpts = logLevel
+    ? {
+        logger: {
+          level: logLevel,
+        },
+      }
+    : undefined;
+  const server = fastify(serverOpts);
   if (pre) {
     await pre(server);
   }
