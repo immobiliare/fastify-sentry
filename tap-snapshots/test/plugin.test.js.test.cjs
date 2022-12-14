@@ -12,7 +12,9 @@ Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {},
+  "request": Object {
+    "user": Object {},
+  },
   "tags": Object {
     "transaction": "GET /oops",
   },
@@ -30,7 +32,9 @@ Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {},
+  "request": Object {
+    "user": Object {},
+  },
   "tags": Object {
     "transaction": "POST /body",
   },
@@ -114,6 +118,10 @@ Object {
     "method": "GET",
     "query_string": Object {},
     "url": "http://localhost:80/oops",
+    "user": Object {
+      "email": "some@example.com",
+      "username": "some",
+    },
   },
   "tags": Object {
     "transaction": "GET /oops",
@@ -146,6 +154,10 @@ Object {
     "method": "POST",
     "query_string": Object {},
     "url": "http://localhost:80/body",
+    "user": Object {
+      "email": "some@example.com",
+      "username": "some",
+    },
   },
   "tags": Object {
     "transaction": "POST /body",

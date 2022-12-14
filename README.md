@@ -36,6 +36,9 @@ This plugin standardize options and payload format then registers a default erro
     + [extractRequestData](#extractrequestdata-1)
     + [extractUserData](#extractuserdata-1)
     + [tryToExtractBody](#trytoextractbody)
+    + [extractPathForTransaction](#extractpathfortransaction)
+    + [shouldHandleError](#shouldhandleerror-1)
+    + [errorResponse](#errorresponse-1)
 - [Compatibility](#compatibility)
 - [Powered Apps](#powered-apps)
 - [Support & Contribute](#support--contribute)
@@ -268,6 +271,18 @@ and has a set of utilities used internally that can be useful when implementing 
 #### tryToExtractBody
 
 > The default function used to extract the body from the request.
+
+#### extractPathForTransaction
+
+> An internal function used to get the transaction name and source.
+
+#### shouldHandleError
+
+> The default function used to decide if an error event should be sent to Sentry.
+
+#### errorResponse
+
+> The default function used to reply to a request that errored.
 
 ## Compatibility
 
