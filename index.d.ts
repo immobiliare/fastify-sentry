@@ -7,21 +7,21 @@ import {
 } from 'fastify';
 import Sentry, { Hub } from '@sentry/node';
 
-import { RequestKeys, UserData, RequestData } from './types/utils';
+import { RequestKeys, UserData, RequestData, shouldHandleError, errorResponse, getTransactionName, extractRequestData, extractUserData } from './types/utils';
 
 export interface SentryPluginOptions extends Sentry.NodeOptions {
     /** Set the plugin error handler */
     setErrorHandler?: boolean
     /** Called inside the error handler, it should return `true` of `false`depending on the fact we want to send the error to Sentry or not */
-    shouldHandleError?: (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => boolean
+    shouldHandleError?: typeof shouldHandleError
     /**  Custom hook to respond the errored request */
-    errorResponse?: (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => void
+    errorResponse?: typeof errorResponse
     /** Custom function to build the transaction name from the request */
-    getTransactionName?: (request: FastifyRequest) => string
+    getTransactionName?: typeof getTransactionName
     /** Custom function to extract the request data */
-    extractRequestData?: (request: FastifyRequest, keys: [RequestKeys]) => RequestData
+    extractRequestData?: typeof extractRequestData
     /** Custom function to extract the user data from the request */
-    extractUserData?: (request: FastifyRequest) => UserData
+    extractUserData?: typeof extractUserData
 }
 
 export const sentryPluginCallback: FastifyPluginCallback<SentryPluginOptions>;
@@ -41,4 +41,4 @@ declare module 'fastify' {
     }
 }
 
-export { RequestKeys, UserData, RequestData } from './types/utils';
+export * from './types/utils';

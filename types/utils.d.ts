@@ -1,4 +1,4 @@
-import { FastifyRequest } from "fastify"
+import { FastifyRequest, FastifyReply, FastifyError } from "fastify"
 
 export enum RequestKeys {
     'headers',
@@ -8,6 +8,11 @@ export enum RequestKeys {
     'cookies',
     'query_string',
     'data'
+}
+
+export enum TransactionSource {
+    'url',
+    'route'
 }
 
 export type RequestData = {
@@ -32,3 +37,9 @@ export function extractRequestData(request: FastifyRequest, keys: RequestKeys): 
 export function extractUserData(request: FastifyRequest): UserData
 
 export function getTransactionName(request: FastifyRequest): string
+
+export function extractPathForTransaction(request: FastifyRequest, getName: typeof getTransactionName): [string, TransactionSource]
+
+export function shouldHandleError(error: FastifyError, request: FastifyRequest, reply: FastifyReply): boolean
+
+export function errorResponse(error: FastifyError, request: FastifyRequest, reply: FastifyReply): void
