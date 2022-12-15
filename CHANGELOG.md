@@ -1,3 +1,11 @@
+## [5.0.1](https://github.com/immobiliare/fastify-sentry/compare/v5.0.0...v5.0.1) (2022-12-15)
+
+
+### Bug Fixes
+
+* make sure user and http method is available in metadata ([1ecbda4](https://github.com/immobiliare/fastify-sentry/commit/1ecbda45bef86ebacdc75e0d22fcec7ad8f02a0c))
+* update distributed tracing logic ([ca19506](https://github.com/immobiliare/fastify-sentry/commit/ca1950692cf7b0f44c41d1025a34b0f51df829fb))
+
 # [5.0.0](https://github.com/immobiliare/fastify-sentry/compare/v4.1.2...v5.0.0) (2022-11-08)
 
 
