@@ -1,6 +1,6 @@
 <h1 align="center">fastify-sentry</h1>
 
-![release workflow](https://img.shields.io/github/workflow/status/immobiliare/fastify-sentry/Release)
+[![Release](https://github.com/immobiliare/fastify-sentry/actions/workflows/release.yml/badge.svg)](https://github.com/immobiliare/fastify-sentry/actions/workflows/release.yml)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier?style=flat-square)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 ![npm (scoped)](https://img.shields.io/npm/v/@immobiliarelabs/fastify-sentry)
