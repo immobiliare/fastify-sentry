@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/immobiliare/fastify-sentry/compare/v5.0.1...v5.0.2) (2023-01-17)
+
+
+### Bug Fixes
+
+* hardcode plugin name ([9a5b916](https://github.com/immobiliare/fastify-sentry/commit/9a5b91691c3b9249a0926da006bfd66f873a5d1a))
+
 ## [5.0.1](https://github.com/immobiliare/fastify-sentry/compare/v5.0.0...v5.0.1) (2022-12-15)
 
 
