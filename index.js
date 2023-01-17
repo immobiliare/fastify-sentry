@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const fp = require('fastify-plugin');
 const base = require('./lib/base');
 const request = require('./lib/request');
@@ -12,8 +11,6 @@ const {
   errorResponse,
   shouldHandleError,
 } = require('./lib/utils');
-
-const PACKAGE_NAME = require(path.resolve(__dirname, 'package.json')).name;
 
 const DEFAULT_CONFIG = {
   setErrorHandler: true,
@@ -37,7 +34,7 @@ module.exports = fp(
     next();
   },
   {
-    name: PACKAGE_NAME,
+    name: '@immobiliarelabs/fastify-sentry',
     fastify: '4.x',
   }
 );
