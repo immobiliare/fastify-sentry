@@ -70,7 +70,7 @@ or `yarn`
 # lastest stable version
 $ yarn add @immobiliarelabs/fastify-sentry
 # latest development version
-$ yarn @immobiliarelabs/fastify-sentry@next
+$ yarn add @immobiliarelabs/fastify-sentry@next
 ```
 
 ## Migrating from version 4
