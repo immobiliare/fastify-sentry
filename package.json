@@ -92,7 +92,7 @@
     }
   },
   "dependencies": {
-    "@sentry/node": "7.44.2",
+    "@sentry/node": "7.45.0",
     "@sentry/tracing": "7.45.0",
     "@sentry/utils": "7.45.0",
     "cookie": "^0.5.0",
