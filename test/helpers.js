@@ -26,6 +26,10 @@ exports.setup = async function (
   server.register(plugin, {
     ...options,
     transport: sentryTransport,
+    // Disable this options because it causes a maxEventListeners
+    // warning on the `beforeExit` event of the process.
+    // TODO: see if we can cleanly handle this.
+    autoSessionTracking: false,
   });
   if (post) {
     await post(server);
