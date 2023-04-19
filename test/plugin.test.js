@@ -57,7 +57,7 @@ tap.test(
   }
 );
 
-tap.test('event with transactions disabled', async (t) => {
+tap.test('event with transactions disabled', { only: true }, async (t) => {
   const app = await setup(
     { dsn: DSN, environment: 'fastify-sentry-test' },
     async (fastify) => {
