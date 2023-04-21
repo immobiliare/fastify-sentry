@@ -9,8 +9,7 @@
     "./utils": "./lib/utils.js"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "keywords": [
     "nodejs",
