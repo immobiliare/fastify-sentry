@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/immobiliare/fastify-sentry/compare/v6.0.0...v6.0.1) (2023-04-21)
+
+
+### Reverts
+
+* Revert "ci(npm): adds npm provenance" ([11c6272](https://github.com/immobiliare/fastify-sentry/commit/11c62721f27c4c5a25df276b52d42fe72dbeda27))
+
 # [6.0.0](https://github.com/immobiliare/fastify-sentry/compare/v5.0.2...v6.0.0) (2023-04-21)
 
 
