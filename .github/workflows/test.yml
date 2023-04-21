@@ -27,4 +27,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Test on current fastify version
-        run: rm package-lock.json && npm it
+        run: npm it
