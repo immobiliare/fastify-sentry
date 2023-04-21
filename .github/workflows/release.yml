@@ -19,9 +19,6 @@ jobs:
           token: ${{ secrets.GH_OWNER_TOKEN }}
           persist-credentials: false
 
-      - name: Latest NPM to use provenance
-        run: npm install -g npm@9
-
       - name: Install dependencies
         run: npm i
 
