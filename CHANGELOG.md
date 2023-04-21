@@ -1,3 +1,22 @@
+# [6.0.0](https://github.com/immobiliare/fastify-sentry/compare/v5.0.2...v6.0.0) (2023-04-21)
+
+
+### Bug Fixes
+
+* **package:** pin exact sentry packages version ([a7d72fe](https://github.com/immobiliare/fastify-sentry/commit/a7d72fedaf06beb5207306f3160fa960f8751ea2))
+* **sentry:** remove domain ([12ad7d0](https://github.com/immobiliare/fastify-sentry/commit/12ad7d0f944a2c293e02d98d61f65cf69a6b7cab))
+* **test:** disable autoSessionTracking ([180c559](https://github.com/immobiliare/fastify-sentry/commit/180c5597950d190268a2a1e8008d8ba6fcdbd8ef))
+
+
+### Build System
+
+* drop node 14 support ([60482e2](https://github.com/immobiliare/fastify-sentry/commit/60482e29db28010850decd7b89b5545b409ed0d6))
+
+
+### BREAKING CHANGES
+
+* Node 14 is not supported anymore
+
 ## [5.0.2](https://github.com/immobiliare/fastify-sentry/compare/v5.0.1...v5.0.2) (2023-01-17)
 
 
