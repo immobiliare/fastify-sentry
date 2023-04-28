@@ -93,7 +93,7 @@
   },
   "dependencies": {
     "@sentry/node": "7.49.0",
-    "@sentry/tracing": "7.49.0",
+    "@sentry/tracing": "7.50.0",
     "@sentry/utils": "7.49.0",
     "cookie": "^0.5.0",
     "fastify-plugin": "^4.3.0"
