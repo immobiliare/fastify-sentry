@@ -8,7 +8,7 @@
       "@semantic-release/commit-analyzer",
       {
         "releaseRules": [
-          { "type": "chore", "scope": "package.json", "release": "patch" }
+          { "type": "chore", "scope": "deps", "release": "patch" }
         ],
         "parserOpts": {
           "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
