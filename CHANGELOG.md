@@ -1,3 +1,5 @@
+## [6.0.7](https://github.com/immobiliare/fastify-sentry/compare/v6.0.6...v6.0.7) (2023-06-30)
+
 ## [6.0.6](https://github.com/immobiliare/fastify-sentry/compare/v6.0.5...v6.0.6) (2023-06-20)
 
 ## [6.0.5](https://github.com/immobiliare/fastify-sentry/compare/v6.0.4...v6.0.5) (2023-06-15)
