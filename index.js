@@ -10,7 +10,7 @@ const {
   extractUserData,
   errorResponse,
   shouldHandleError,
-} = require('./lib/utils');
+} = require('./utils');
 
 const DEFAULT_CONFIG = {
   setErrorHandler: true,
@@ -21,20 +21,21 @@ const DEFAULT_CONFIG = {
   extractUserData,
 };
 
-module.exports = fp(
-  function (fastify, opts, next) {
-    const config = Object.assign({}, DEFAULT_CONFIG, opts);
-    try {
-      validate(config);
-    } catch (error) {
-      return next(error);
-    }
-    base(fastify, config);
-    request(fastify);
-    next();
-  },
-  {
-    name: '@immobiliarelabs/fastify-sentry',
-    fastify: '4.x',
+const fastifySentry = function (fastify, opts, next) {
+  const config = Object.assign({}, DEFAULT_CONFIG, opts);
+  try {
+    validate(config);
+  } catch (error) {
+    return next(error);
   }
-);
+  base(fastify, config);
+  request(fastify);
+  next();
+};
+
+module.exports = fp(fastifySentry, {
+  name: '@immobiliarelabs/fastify-sentry',
+  fastify: '4.x',
+});
+module.exports.default = fastifySentry;
+module.exports.fastifySentry = fastifySentry;
