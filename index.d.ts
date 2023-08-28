@@ -1,14 +1,14 @@
 import {
     FastifyPluginCallback,
 } from 'fastify';
-import Sentry, { Hub } from '@sentry/node';
+import Sentry, { Hub, NodeOptions } from '@sentry/node';
 
 import { shouldHandleError, errorResponse, getTransactionName, extractRequestData, extractUserData } from './utils';
 
 type FastifySentryPlugin = FastifyPluginCallback<fastifySentry.FastifySentryOptions>
 
 declare namespace fastifySentry {
-    export interface FastifySentryOptions {
+    export interface FastifySentryOptions extends NodeOptions {
         /** Set the plugin error handler */
         setErrorHandler?: boolean
         /** Called inside the error handler, it should return `true` of `false`depending on the fact we want to send the error to Sentry or not */
