@@ -13,3 +13,8 @@ app.get('/', async (request, reply) => {
   expectType<string>(reply.sentryEventId);
   expectType<ReturnType<Hub['startTransaction']>|null>(reply.sentryTransaction);
 })
+
+const app2 = fastify()
+app2.register(plugin, {
+  dsn: ''
+})
