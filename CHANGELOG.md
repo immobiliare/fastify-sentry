@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/immobiliare/fastify-sentry/compare/v7.0.0...v7.0.1) (2023-08-28)
+
+
+### Bug Fixes
+
+* **types:** fix missing dsn option ([937e44b](https://github.com/immobiliare/fastify-sentry/commit/937e44ba5c3a50da507820fef5026635837558b3))
+
 # [7.0.0](https://github.com/immobiliare/fastify-sentry/compare/v6.0.10...v7.0.0) (2023-08-25)
 
 
