@@ -1,7 +1,7 @@
 'use strict';
 
 const fastify = require('fastify');
-const plugin = require('@immobiliarelabs/fastify-sentry');
+const plugin = require('@immobiliarelabs/fastify-sentry'); // eslint-disable-line
 const assert = require('assert');
 
 const app = fastify();
