@@ -28,3 +28,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Test on current fastify version
         run: npm it
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: npm i
+      - name: Install dependencies
+        run: npm run lint
