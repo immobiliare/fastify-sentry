@@ -1,5 +1,5 @@
 import plugin from '../index.js';
-import { tryToExtractBody } from '../lib/utils.js'; // @immobiliarelabs/fastify-sentry/utils
+import { tryToExtractBody } from '../utils.js'; // @immobiliarelabs/fastify-sentry/utils
 import fastify from 'fastify';
 
 const app = fastify({ logger: true });

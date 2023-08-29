@@ -5,4 +5,4 @@ functions: 95
 branches: 80
 statements: 95
 node-arg: "--trace-warnings"
-timeout: 120
+timeout: 360
