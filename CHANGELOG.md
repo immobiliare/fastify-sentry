@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/immobiliare/fastify-sentry/compare/v7.0.1...v7.1.0) (2023-08-31)
+
+
+### Features
+
+* **config:** support skipping sentry init ([725c081](https://github.com/immobiliare/fastify-sentry/commit/725c081465dc66a7a346b41754168c0505a8b11f))
+
 ## [7.0.1](https://github.com/immobiliare/fastify-sentry/compare/v7.0.0...v7.0.1) (2023-08-28)
 
 
