@@ -19,6 +19,7 @@ const DEFAULT_CONFIG = {
   getTransactionName,
   extractRequestData,
   extractUserData,
+  skipInit: false,
 };
 
 const fastifySentry = function (fastify, opts, next) {

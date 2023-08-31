@@ -21,6 +21,8 @@ declare namespace fastifySentry {
         extractRequestData?: typeof extractRequestData
         /** Custom function to extract the user data from the request */
         extractUserData?: typeof extractUserData
+        /** Skip Sentry.init call (useful in serverless integrations, see https://github.com/immobiliare/fastify-sentry/issues/621) */
+        skipInit?: boolean
     }
     export const fastifySentry: FastifySentryPlugin
     export { fastifySentry as default }
