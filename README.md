@@ -31,6 +31,7 @@ This plugin standardize options and payload format then registers a default erro
     + [getTransactionName](#gettransactionname)
     + [extractRequestData](#extractrequestdata)
     + [extractUserData](#extractuserdata)
+    + [skipInit](#skipinit)
   * [utils](#utils)
     + [getTransactionName](#gettransactionname-1)
     + [extractRequestData](#extractrequestdata-1)
@@ -237,6 +238,15 @@ This function is called in the dafult error handler right after the exception is
     email: '',
 }
 ```
+
+#### skipInit
+
+> Skip the `Sentry.init` call that initializes the SDK. Useful if working in an environment that already initializes the Sentry SDK.
+
+**type**: `boolean`
+
+**default**: `false`
+
 
 ### utils
 
