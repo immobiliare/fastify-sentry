@@ -92,7 +92,7 @@
     "sentry-testkit": "^5.0.3",
     "sinon": "^15.0.0",
     "tap": "^16.0.1",
-    "tsd": "^0.28.0",
+    "tsd": "^0.29.0",
     "typescript": "^5.0.2"
   },
   "config": {
