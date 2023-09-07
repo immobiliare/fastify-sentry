@@ -63,7 +63,7 @@
     "npm": ">=8"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.8.0",
+    "@arethetypeswrong/cli": "^0.10.1",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@fastify/sensible": "^5.1.0",
