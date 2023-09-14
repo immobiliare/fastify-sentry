@@ -85,7 +85,7 @@ function extractUserData(request) {
 exports.extractUserData = extractUserData;
 
 const getTransactionName = (request) => {
-  return `${request.method} ${request.routerPath}`;
+  return `${request.method} ${request.routeOptions.url}`;
 };
 exports.getTransactionName = getTransactionName;
 
