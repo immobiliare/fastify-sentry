@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/immobiliare/fastify-sentry/compare/v7.1.0...v7.1.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* remove fastify deprecation warning ([2b84c12](https://github.com/immobiliare/fastify-sentry/commit/2b84c12bd840b84e81f533b58ae9296aac9f7fc5))
+
 # [7.1.0](https://github.com/immobiliare/fastify-sentry/compare/v7.0.1...v7.1.0) (2023-08-31)
 
 
