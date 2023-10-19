@@ -51,8 +51,7 @@ This plugin standardize options and payload format then registers a default erro
 
 | `Node.js` | `fastify` | `@immobiliarelabs/fastify-sentry` |
 | --------- | --------- | ---------------------------------- |
-| `<14`     | `3`       | `3`                                |
-| `>14`     | `4`       | `4` and `5`                              |
+| `>=18`     | `4`       | `7`                              |
 
 ## Installation
 
