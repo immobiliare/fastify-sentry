@@ -2,7 +2,6 @@
 
 const tap = require('tap');
 const { defaultIntegrations } = require('@sentry/node');
-const { spy, stub } = require('sinon');
 const sensible = require('@fastify/sensible');
 const {
   setup,
@@ -35,7 +34,7 @@ tap.test('Should close sentry when fastify closes', async (t) => {
   // We use a stub here because in a CI environment the sdk fails
   // with a 400 status code when calling `close()`.
   const app = await setup({ dsn: DSN });
-  const close = stub(app.Sentry, 'close').resolves();
+  const close = t.sinon.stub(app.Sentry, 'close').resolves();
   await app.close();
   t.ok(close.calledOnce);
   close.restore();
@@ -50,7 +49,7 @@ tap.test(
     // causing the `done()` cb in the hook to pass a value, which is considered
     // an error by the fastify hook runner.
     const app = await setup();
-    const close = spy(app.Sentry, 'close');
+    const close = t.sinon.spy(app.Sentry, 'close');
     await app.close();
     t.ok(close.calledOnce);
     close.restore();
