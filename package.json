@@ -59,8 +59,7 @@
   "author": "",
   "license": "MIT",
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": ">=18"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.13.4",
