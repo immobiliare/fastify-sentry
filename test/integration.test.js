@@ -76,6 +76,6 @@ tap.test('ts', async (t) => {
   await install({ cwd });
   const { error, stdout, stderr } = await run('npm run build:ts', { cwd });
   t.notOk(error);
-  t.equal(stdout, '');
+  t.matchSnapshot(stdout);
   t.equal(stderr, '');
 });
