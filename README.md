@@ -17,7 +17,6 @@ This plugin standardize options and payload format then registers a default erro
 
 <!-- toc -->
 
-  * [Fastify Version Support](#fastify-version-support)
 - [Installation](#installation)
 - [Migrating from version 4](#migrating-from-version-4)
 - [Usage](#usage)
@@ -46,13 +45,6 @@ This plugin standardize options and payload format then registers a default erro
 - [License](#license)
 
 <!-- tocstop -->
-
-### Fastify Version Support
-
-| `Node.js` | `fastify` | `@immobiliarelabs/fastify-sentry` |
-| --------- | --------- | ---------------------------------- |
-| `<14`     | `3`       | `3`                                |
-| `>14`     | `4`       | `4` and `5`                              |
 
 ## Installation
 
@@ -300,7 +292,7 @@ and has a set of utilities used internally that can be useful when implementing 
 | ---     | ---            |
 | fastify | `>=4.0.0`        |
 | sentry | `^7.0.0`        |
-
+| Node.js | `>=18` |
 ## Powered Apps
 
 `fastify-sentry` was created by the amazing Node.js team at [ImmobiliareLabs](https://github.com/immobiliare), the Tech dept of [Immobiliare.it](https://www.immobiliare.it), the #1 real estate company in Italy.

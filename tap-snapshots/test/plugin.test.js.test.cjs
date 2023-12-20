@@ -4,10 +4,8 @@
  * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
  * Make sure to inspect the output below.  Do not ignore changes!
  */
-'use strict';
-exports[
-  `test/plugin.test.js TAP custom extractRequestData > must match snapshot 1`
-] = `
+'use strict'
+exports[`test/plugin.test.js > TAP > custom extractRequestData > must match snapshot 1`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -23,11 +21,9 @@ Object {
     "ip_address": "127.0.0.1",
   },
 }
-`;
+`
 
-exports[
-  `test/plugin.test.js TAP custom extractRequestData > must match snapshot 2`
-] = `
+exports[`test/plugin.test.js > TAP > custom extractRequestData > must match snapshot 2`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -43,11 +39,9 @@ Object {
     "ip_address": "127.0.0.1",
   },
 }
-`;
+`
 
-exports[
-  `test/plugin.test.js TAP event with transactions disabled > must match snapshot 1`
-] = `
+exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 1`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -70,11 +64,9 @@ Object {
     "username": "some",
   },
 }
-`;
+`
 
-exports[
-  `test/plugin.test.js TAP event with transactions disabled > must match snapshot 2`
-] = `
+exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 2`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -100,11 +92,9 @@ Object {
     "username": "some",
   },
 }
-`;
+`
 
-exports[
-  `test/plugin.test.js TAP event with transactions enabled > must match snapshot 1`
-] = `
+exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 1`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -133,11 +123,9 @@ Object {
     "username": "some",
   },
 }
-`;
+`
 
-exports[
-  `test/plugin.test.js TAP event with transactions enabled > must match snapshot 2`
-] = `
+exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 2`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
@@ -169,4 +157,4 @@ Object {
     "username": "some",
   },
 }
-`;
+`
