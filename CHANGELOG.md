@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/immobiliare/fastify-sentry/compare/v7.1.1...v8.0.0) (2023-12-20)
+
+
+### Bug Fixes
+
+* node version ([2748abf](https://github.com/immobiliare/fastify-sentry/commit/2748abf19966062c7f304677a3825f21b4764fc2))
+
+
+### BREAKING CHANGES
+
+* Node versions older than 18 are not ufficially supported
+
 ## [7.1.1](https://github.com/immobiliare/fastify-sentry/compare/v7.1.0...v7.1.1) (2023-09-15)
 
 
