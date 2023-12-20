@@ -18,7 +18,7 @@ This plugin standardize options and payload format then registers a default erro
 <!-- toc -->
 
 - [Installation](#installation)
-- [Migrating from version 4](#migrating-from-version-4)
+- [Migration guides](#migration-guides)
 - [Usage](#usage)
   * [using Sentry in a route handler](#using-sentry-in-a-route-handler)
   * [Benchmarks](#benchmarks)
@@ -66,9 +66,9 @@ $ yarn add @immobiliarelabs/fastify-sentry
 $ yarn add @immobiliarelabs/fastify-sentry@next
 ```
 
-## Migrating from version 4
+## Migration guides
 
-Please check this [migration guide](./MIGRATION_GUIDE.md) if you are migrating from the version 4 of the plugin.
+Please check these [migration guides](./MIGRATION_GUIDE.md) if you are migrating from an older version of the plugin.
 
 ## Usage
 
