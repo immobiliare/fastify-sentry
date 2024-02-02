@@ -83,7 +83,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.0",
     "fastify": "^4.0.3",
-    "husky": "^8.0.0",
+    "husky": "^9.0.10",
     "is-ci": "^3.0.0",
     "lint-staged": "^15.2.0",
     "markdown-toc": "^1.2.0",
