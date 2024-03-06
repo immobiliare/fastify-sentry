@@ -104,9 +104,9 @@
     "directory": "test/types"
   },
   "dependencies": {
-    "@sentry/node": "^7.60.0",
-    "@sentry/tracing": "^7.60.0",
-    "@sentry/utils": "^7.60.0",
+    "@sentry/node": "^7.105.0",
+    "@sentry/tracing": "^7.105.0",
+    "@sentry/utils": "^7.105.0",
     "cookie": "^0.6.0",
     "fastify-plugin": "^4.3.0"
   }
