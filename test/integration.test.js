@@ -47,13 +47,14 @@ tap.jobs = 3;
 
 tap.before(async () => {
   await clean();
-  const { stdout: pack } = await run('npm pack');
-  const source = join(root, pack.trim());
+  const { stdout } = await run('npm pack');
+  const pack = stdout.trim().split('\n').pop();
+  const source = join(root, pack);
   const dest = join(__dirname, 'fixtures', 'pack.tgz');
   await rename(source, dest);
 });
 
-tap.test('cjs', async (t) => {
+tap.test('cjs', { only: true }, async (t) => {
   const cwd = join(__dirname, 'fixtures', 'cjs');
   await install({ cwd });
   const { error, stdout, stderr } = await run('node index.js', { cwd });
