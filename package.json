@@ -62,7 +62,7 @@
     "node": ">=18"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.13.4",
+    "@arethetypeswrong/cli": "^0.15.2",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@fastify/sensible": "^5.1.0",
