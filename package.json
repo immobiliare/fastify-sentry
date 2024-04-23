@@ -78,7 +78,7 @@
     "autocannon": "^7.4.0",
     "concurrently": "^8.0.1",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^8.0.0",
+    "eslint": "^9.1.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.0",
