@@ -1,3 +1,10 @@
+## [8.0.2](https://github.com/immobiliare/fastify-sentry/compare/v8.0.1...v8.0.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* package.json to reduce vulnerabilities ([eeccb19](https://github.com/immobiliare/fastify-sentry/commit/eeccb191c9866e584e9b3ba672b6372b45274a28))
+
 ## [8.0.1](https://github.com/immobiliare/fastify-sentry/compare/v8.0.0...v8.0.1) (2024-03-06)
 
 # [8.0.0](https://github.com/immobiliare/fastify-sentry/compare/v7.1.1...v8.0.0) (2023-12-20)
