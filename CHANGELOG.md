@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/immobiliare/fastify-sentry/compare/v9.0.0...v9.0.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* changelog ([f852002](https://github.com/immobiliare/fastify-sentry/commit/f8520026734e3159c12f88c78bd8959096ebd6ae))
+
 # [9.0.0](https://github.com/immobiliare/fastify-sentry/compare/v8.0.2...v9.0.0) (2024-11-28)
 
 
