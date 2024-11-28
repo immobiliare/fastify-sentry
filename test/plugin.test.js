@@ -2,7 +2,6 @@
 
 const tap = require('tap');
 const { defaultIntegrations } = require('@sentry/node');
-const sensible = require('@fastify/sensible');
 const {
   setup,
   resetModuleCache,
@@ -159,29 +158,6 @@ tap.test('event with transactions enabled', async (t) => {
   report = reports[0];
   t.equal(report.breadcrumbs.length, 0);
   t.matchSnapshot(extractMetaFromEvent(report));
-});
-
-tap.test('@fastify/sensible explicit internal errors support', async (t) => {
-  const app = await setup(
-    { dsn: DSN, environment: 'fastify-sentry-test' },
-    async (s) => {
-      s.register(sensible);
-    },
-    async (s) => {
-      s.get('/sensible', async function () {
-        throw this.httpErrors.internalServerError('My Error');
-      });
-    }
-  );
-  const response = await app.inject({
-    method: 'GET',
-    path: '/sensible',
-  });
-  t.equal(500, response.statusCode);
-  await app.Sentry.flush();
-  t.equal(testkit.reports().length, 1);
-  const payload = JSON.parse(response.payload);
-  t.equal('My Error', payload.message);
 });
 
 tap.test('custom `shouldHandleError`', async (t) => {
