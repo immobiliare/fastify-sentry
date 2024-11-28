@@ -17,7 +17,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         # os: [ubuntu-latest, macos-latest, windows-latest]
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -29,6 +29,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Test on current fastify version
         run: npm it
+      - name: Test on fastify version 4
+        run: npm i && npm i fastify@4 && npm t
+
   lint:
     runs-on: ubuntu-latest
     steps:

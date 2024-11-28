@@ -63,9 +63,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.13.4",
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@fastify/sensible": "^5.1.0",
+    "@fastify/sensible": "^6.0.1",
     "@saithodev/semantic-release-backmerge": "^4.0.1",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/commit-analyzer": "^11.0.0",
@@ -77,12 +75,11 @@
     "@types/node": "^20.1.0",
     "autocannon": "^7.4.0",
     "concurrently": "^8.0.1",
-    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "fastify": "^4.0.3",
+    "fastify": "^5.1.0",
     "husky": "^8.0.0",
     "is-ci": "^3.0.0",
     "lint-staged": "^15.2.0",
@@ -94,11 +91,6 @@
     "tsd": "^0.30.0",
     "typescript": "^5.0.2"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "types": "./index.d.ts",
   "tsd": {
     "directory": "test/types"
@@ -108,6 +100,6 @@
     "@sentry/tracing": "^7.105.0",
     "@sentry/utils": "^7.105.0",
     "cookie": "^0.7.0",
-    "fastify-plugin": "^4.3.0"
+    "fastify-plugin": "^5.0.1"
   }
 }
