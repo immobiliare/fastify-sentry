@@ -7,11 +7,6 @@
 * update to fastify v5 ([a3b6381](https://github.com/immobiliare/fastify-sentry/commit/a3b6381d4fdb9c13bad5540231b6f33cad67c326)), closes [#726](https://github.com/immobiliare/fastify-sentry/issues/726)
 
 
-### BREAKING CHANGES
-
-* fastify 4 is no longer supported, @fastify/sensible custom
-error handling is no longer supported either.
-
 ## [8.0.2](https://github.com/immobiliare/fastify-sentry/compare/v8.0.1...v8.0.2) (2024-10-09)
 
 
