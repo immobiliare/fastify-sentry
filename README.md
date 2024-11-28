@@ -293,6 +293,7 @@ and has a set of utilities used internally that can be useful when implementing 
 | fastify | `>=4.0.0`        |
 | sentry | `^7.0.0`        |
 | Node.js | `>=18` |
+
 ## Powered Apps
 
 `fastify-sentry` was created by the amazing Node.js team at [ImmobiliareLabs](https://github.com/immobiliare), the Tech dept of [Immobiliare.it](https://www.immobiliare.it), the #1 real estate company in Italy.

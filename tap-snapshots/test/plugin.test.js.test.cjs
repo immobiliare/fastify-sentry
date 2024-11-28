@@ -43,19 +43,21 @@ Object {
 
 exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 1`] = `
 Object {
+  "cookies": Object {},
+  "headers": Object {
+    "host": "localhost:80",
+    "user-agent": "lightMyRequest",
+  },
+  "method": "GET",
+  "query_string": Object {},
+}
+`
+
+exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 2`] = `
+Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {
-    "cookies": Object {},
-    "headers": Object {
-      "host": "localhost:80",
-      "user-agent": "lightMyRequest",
-    },
-    "method": "GET",
-    "query_string": Object {},
-    "url": "http://localhost:80/oops",
-  },
   "tags": undefined,
   "transaction": "GET /oops",
   "user": Object {
@@ -66,24 +68,26 @@ Object {
 }
 `
 
-exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 2`] = `
+exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 3`] = `
+Object {
+  "cookies": Object {},
+  "data": "{\\"some\\":\\"some\\"}",
+  "headers": Object {
+    "content-length": "15",
+    "content-type": "application/json",
+    "host": "localhost:80",
+    "user-agent": "lightMyRequest",
+  },
+  "method": "POST",
+  "query_string": Object {},
+}
+`
+
+exports[`test/plugin.test.js > TAP > event with transactions disabled > must match snapshot 4`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {
-    "cookies": Object {},
-    "data": "{\\"some\\":\\"some\\"}",
-    "headers": Object {
-      "content-length": "15",
-      "content-type": "application/json",
-      "host": "localhost:80",
-      "user-agent": "lightMyRequest",
-    },
-    "method": "POST",
-    "query_string": Object {},
-    "url": "http://localhost:80/body",
-  },
   "tags": undefined,
   "transaction": "POST /body",
   "user": Object {
@@ -96,23 +100,25 @@ Object {
 
 exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 1`] = `
 Object {
+  "cookies": Object {},
+  "headers": Object {
+    "host": "localhost:80",
+    "user-agent": "lightMyRequest",
+  },
+  "method": "GET",
+  "query_string": Object {},
+  "user": Object {
+    "email": "some@example.com",
+    "username": "some",
+  },
+}
+`
+
+exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 2`] = `
+Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {
-    "cookies": Object {},
-    "headers": Object {
-      "host": "localhost:80",
-      "user-agent": "lightMyRequest",
-    },
-    "method": "GET",
-    "query_string": Object {},
-    "url": "http://localhost:80/oops",
-    "user": Object {
-      "email": "some@example.com",
-      "username": "some",
-    },
-  },
   "tags": Object {
     "transaction": "GET /oops",
   },
@@ -125,28 +131,30 @@ Object {
 }
 `
 
-exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 2`] = `
+exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 3`] = `
+Object {
+  "cookies": Object {},
+  "data": "{\\"some\\":\\"some\\"}",
+  "headers": Object {
+    "content-length": "15",
+    "content-type": "application/json",
+    "host": "localhost:80",
+    "user-agent": "lightMyRequest",
+  },
+  "method": "POST",
+  "query_string": Object {},
+  "user": Object {
+    "email": "some@example.com",
+    "username": "some",
+  },
+}
+`
+
+exports[`test/plugin.test.js > TAP > event with transactions enabled > must match snapshot 4`] = `
 Object {
   "breadcrumbs": undefined,
   "environment": "fastify-sentry-test",
   "platform": "node",
-  "request": Object {
-    "cookies": Object {},
-    "data": "{\\"some\\":\\"some\\"}",
-    "headers": Object {
-      "content-length": "15",
-      "content-type": "application/json",
-      "host": "localhost:80",
-      "user-agent": "lightMyRequest",
-    },
-    "method": "POST",
-    "query_string": Object {},
-    "url": "http://localhost:80/body",
-    "user": Object {
-      "email": "some@example.com",
-      "username": "some",
-    },
-  },
   "tags": Object {
     "transaction": "POST /body",
   },
