@@ -104,7 +104,7 @@ exports.shouldHandleError = shouldHandleError;
 
 const errorResponse = function (error, request, reply) {
   // @fastify/sensible explicit internal errors support
-  if (reply.statusCode === 500) {
+  if (reply.statusCode === 500 && error.explicitInternalServerError !== true) {
     reply.send(new Error('Something went wrong'));
   } else {
     reply.send(error);

@@ -36,7 +36,7 @@ const fastifySentry = function (fastify, opts, next) {
 
 module.exports = fp(fastifySentry, {
   name: '@immobiliarelabs/fastify-sentry',
-  fastify: '5.x',
+  fastify: '4.x',
 });
 module.exports.default = fastifySentry;
 module.exports.fastifySentry = fastifySentry;
