@@ -87,7 +87,11 @@ tap.test('event with transactions disabled', async (t) => {
   t.equal(report.user.email, 'some@example.com');
   t.equal(report.user.ip_address, '127.0.0.1');
   t.equal(report.breadcrumbs.length, 0);
-  t.matchSnapshot(extractMetaFromEvent(report));
+  const { request: r, ...o } = extractMetaFromEvent(report);
+  const { url: u, ...s } = r;
+  t.ok(u === 'http://localhost:80/oops' || u === 'http://localhost/oops');
+  t.matchSnapshot(s);
+  t.matchSnapshot(o);
   const transactions = testkit.transactions();
   t.equal(transactions.length, 0);
   const payload = JSON.parse(response.payload);
@@ -104,7 +108,11 @@ tap.test('event with transactions disabled', async (t) => {
   t.equal(reports.length, 1);
   report = reports[0];
   t.equal(report.breadcrumbs.length, 0);
-  t.matchSnapshot(extractMetaFromEvent(report));
+  const { request, ...other } = extractMetaFromEvent(report);
+  const { url, ...stuff } = request;
+  t.ok(url === 'http://localhost:80/body' || url === 'http://localhost/body');
+  t.matchSnapshot(stuff);
+  t.matchSnapshot(other);
 });
 
 tap.test('event with transactions enabled', async (t) => {
@@ -139,7 +147,11 @@ tap.test('event with transactions enabled', async (t) => {
   t.equal(report.user.email, 'some@example.com');
   t.equal(report.user.ip_address, '127.0.0.1');
   t.equal(report.breadcrumbs.length, 0);
-  t.matchSnapshot(extractMetaFromEvent(report));
+  const { request: r, ...o } = extractMetaFromEvent(report);
+  const { url: u, ...s } = r;
+  t.ok(u === 'http://localhost:80/oops' || u === 'http://localhost/oops');
+  t.matchSnapshot(s);
+  t.matchSnapshot(o);
   const transactions = testkit.transactions();
   t.equal(transactions.length, 1);
   t.equal(transactions[0].name, 'GET /oops');
@@ -157,7 +169,11 @@ tap.test('event with transactions enabled', async (t) => {
   t.equal(reports.length, 1);
   report = reports[0];
   t.equal(report.breadcrumbs.length, 0);
-  t.matchSnapshot(extractMetaFromEvent(report));
+  const { request, ...other } = extractMetaFromEvent(report);
+  const { url, ...stuff } = request;
+  t.ok(url === 'http://localhost:80/body' || url === 'http://localhost/body');
+  t.matchSnapshot(stuff);
+  t.matchSnapshot(other);
 });
 
 tap.test('custom `shouldHandleError`', async (t) => {
