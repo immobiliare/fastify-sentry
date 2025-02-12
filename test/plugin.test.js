@@ -117,7 +117,12 @@ tap.test('event with transactions disabled', async (t) => {
 
 tap.test('event with transactions enabled', async (t) => {
   const app = await setup(
-    { dsn: DSN, environment: 'fastify-sentry-test', tracesSampleRate: 1.0 },
+    {
+      dsn: DSN,
+      environment: 'fastify-sentry-test',
+      tracesSampleRate: 1.0,
+      enableTracing: true,
+    },
     async (fastify) => {
       fastify.decorateRequest('user', null);
       fastify.addHook('onRequest', (request, reply, done) => {
@@ -224,6 +229,7 @@ tap.test('custom getTransactionName', async (t) => {
     dsn: DSN,
     environment: 'fastify-sentry-test',
     tracesSampleRate: 1.0,
+    enableTracing: true,
   });
   let response = await app.inject({
     method: 'GET',
@@ -246,6 +252,7 @@ tap.test('custom extractRequestData', async (t) => {
       dsn: DSN,
       environment: 'fastify-sentry-test',
       tracesSampleRate: 1.0,
+      enableTracing: true,
       extractRequestData: (request, keys) => {
         count++;
         t.ok(keys);

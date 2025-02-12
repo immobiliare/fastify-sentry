@@ -30,7 +30,7 @@ const fastifySentry = function (fastify, opts, next) {
     return next(error);
   }
   base(fastify, config);
-  request(fastify);
+  request(fastify, config);
   next();
 };
 
