@@ -2,8 +2,8 @@
 
 # ⚠️ No longer maintained ⚠️
 
-Given that the latest release of the Sentry SDK has an [official integration for Fastify](https://docs.sentry.io/platforms/javascript/guides/fastify/) that already covers all the needs, after some [thought](https://github.com/immobiliare/fastify-sentry/issues/729) we decided to no longer maintain this plugin.
-We are grateful for all the people that found it useful and all the people that contributed to it to make it better.
+Given that the latest release of the Sentry SDK has an [official integration for Fastify](https://docs.sentry.io/platforms/javascript/guides/fastify/) that covers all use cases, after some [thought](https://github.com/immobiliare/fastify-sentry/issues/729) we decided to no longer maintain this plugin.
+We are grateful to everyone who found it useful and all contributors who improved it.
 
 -------
 
