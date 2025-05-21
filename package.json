@@ -66,7 +66,7 @@
     "@fastify/sensible": "^6.0.1",
     "@saithodev/semantic-release-backmerge": "^4.0.1",
     "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/commit-analyzer": "^11.0.0",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.0",
     "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^11.0.0",
